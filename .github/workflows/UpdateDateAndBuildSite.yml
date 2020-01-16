@@ -12,10 +12,6 @@ jobs:
       uses: actions/setup-node@v1.1.0
       with:
         version:  12.x
-    - name: Setup checkout
-      uses: actions/checkout@v2
-      with:
-        ref: master
     - name: Checkout, build the site and commit template changes
       run: |
         git checkout master
