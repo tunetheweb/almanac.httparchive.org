@@ -12,15 +12,21 @@ jobs:
       uses: actions/setup-node@v1.1.0
       with:
         version:  12.x
+    - name: Setup checkout
+      uses: actions/checkout@v2
     - name: Checkout, build the site and commit template changes
       run: |
         git checkout master
         cd src
         npm install
         npm run generate
+        echo "Checking git status"
         git status
+        echo "Adding templates directory"
         git config --global user.email "barry_pollard@hotmail.com"
         git config --global user.name "Automatic Update"
         git add templates
+        echo "Commiting changed"
         git commit -m "Regenerated chapters"
         echo 'machine github.com login ${{ secrets.PUSH_USERNAME }} password ${{ secrets.PUSH_TOKEN }}' > ~/.netrc
+        git push origin master
