@@ -23,4 +23,7 @@ jobs:
         npm install
         npm run generate
         git status
+        git config --global user.email "barry_pollard@hotmail.com"
+        git config --global user.name "Automatic Update"
         git commit -m "Regenerated chapters"
+        echo 'machine github.com login ${{ secrets.PUSH_USERNAME }} password ${{ secrets.PUSH_TOKEN }}' > ~/.netrc
