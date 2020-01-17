@@ -16,6 +16,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Update timestamp for modified files
       run: |
+        git pull
         echo "files changed in commit $GITHUB_SHA:"
         git diff-tree --no-commit-id --name-only -r $GITHUB_SHA
         echo "Updating timestamp in any template files"
