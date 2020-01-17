@@ -1,4 +1,4 @@
-name: UpdateDateAndBuildSite
+name: UpdateDateAndBuildChapters
 on:
   push:
     branches:
@@ -19,8 +19,10 @@ jobs:
     - name: Checkout, build the site and commit template changes
       run: |
         git checkout master
+        echo "files change:"
+        git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
         echo "Updating timestamp in any markdown chapter files"
-        git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep "^src/content/[a-z]*/[0-9]*/[a-z0-9-]*.md" | xargs sed -i "s/^last_updated: [0-9-]*T$/last_updated: $(date '+%Y-%m-%d')T/"
+        git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep "^src\/content\/[a-z]*\/[0-9]*\/[a-z0-9-]*.md" | xargs sed -i "s/^last_updated: [0-9-]*T$/last_updated: $(date '+%Y-%m-%d')T/"
         echo "regenerating chapters"
         cd src
         npm install
