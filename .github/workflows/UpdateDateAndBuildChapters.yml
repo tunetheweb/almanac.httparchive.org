@@ -19,9 +19,12 @@ jobs:
       run: |
         echo "files changed in commit $GITHUB_SHA:"
         git diff-tree --no-commit-id --name-only -r $GITHUB_SHA
+        echo "Current timestamps"
         git diff-tree --no-commit-id --name-only -r $GITHUB_SHA | grep "^src\/content\/[a-z]*\/[0-9]*\/[a-z0-9-]*.md" | xargs grep last_updated
         echo "Updating timestamp in any markdown chapter files"
         git diff-tree --no-commit-id --name-only -r $GITHUB_SHA | grep "^src\/content\/[a-z]*\/[0-9]*\/[a-z0-9-]*.md" | xargs sed -i "s/^last_updated: [0-9-]*T$/last_updated: $(date '+%Y-%m-%d')T/"
+        echo "Updated timestamps"
+        git diff-tree --no-commit-id --name-only -r $GITHUB_SHA | grep "^src\/content\/[a-z]*\/[0-9]*\/[a-z0-9-]*.md" | xargs grep last_updated
     - name: Setup Node.js for use with actions
       uses: actions/setup-node@v1.1.0
       with:
