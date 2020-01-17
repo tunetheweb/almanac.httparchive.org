@@ -1,10 +1,5 @@
 name: Compress images
-on:
-  pull_request:
-    paths:
-      - '**.jpg'
-      - '**.png'
-      - '**.webp'
+on: pull_request
 jobs:
   build:
     name: calibreapp/image-actions
@@ -12,6 +7,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: calibreapp/image-actions
-        uses: docker://calibreapp/github-image-actions
+        uses: calibreapp/image-actions@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
