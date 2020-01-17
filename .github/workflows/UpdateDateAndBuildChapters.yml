@@ -13,9 +13,8 @@ jobs:
     - name: Setup checkout
       with:
         ref: master
+        fetch-depth: 1:
       uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
     - name: Update timestamp for modified files
       run: |
         echo "files changed in commit $GITHUB_SHA:"
