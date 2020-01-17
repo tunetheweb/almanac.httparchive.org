@@ -37,21 +37,6 @@ jobs:
         npm install
         echo "regenerating chapters"
         npm run generate
-    - name: Setup python
-      uses: actions/setup-python@v1.1.1
-      with:
-        version: 3.x
-    - name: Run site and download chapters
-      run: |
-        cd src
-        sudo pip install virtualenv
-        virtualenv --python python3 env
-        source env/bin/activate
-        pip install -r requirements.txt
-        python main.py
-        echo "Let's download the chapter"
-        curl http://127.0.0.1:8080/en/2019/http2 > static/http2.html
-        echo "Chapter downloaded!"
     - name: Commit changes
       env:
         REPO_OWNER_EMAIL: ${{ github.repository.owner.email }}
