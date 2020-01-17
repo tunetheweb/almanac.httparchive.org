@@ -19,6 +19,7 @@ jobs:
         echo "files changed in commit $GITHUB_SHA:"
         git diff-tree --no-commit-id --name-only -r $GITHUB_SHA
         echo "Updating timestamp in any markdown chapter files"
+        #Commenting out next line as git diff-tree not returning anything and it's causing it to fail :-(
         #git diff-tree --no-commit-id --name-only -r $GITHUB_SHA | grep "^src\/content\/[a-z]*\/[0-9]*\/[a-z0-9-]*.md" | xargs sed -i "s/^last_updated: [0-9-]*T$/last_updated: $(date '+%Y-%m-%d')T/"
     - name: Setup Node.js for use with actions
       uses: actions/setup-node@v1.1.0
