@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - master
+    paths:
+      - templates/**
+      - content/**
 
 jobs:
   build:
@@ -17,16 +20,22 @@ jobs:
     - name: Checkout, build the site and commit template changes
       run: |
         git checkout master
+        echo "Updating timestamp in any template files"
+        git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep "^src/templates/[a-z]*/[0-9]*/[a-z0-9-]*.html" | xargs sed -i "s/\"dateModified\": \"[0-9-]*T/\"dateModified\": \"$(date '+%Y-%m-%d')T/"
+        echo "Updating timestamp in any markdown chapter files"
+        git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep "^src/content/[a-z]*/[0-9]*/[a-z0-9-]*.md" | xargs sed -i "s/^last_updated: [0-9-]*T$/last_updated: $(date '+%Y-%m-%d')T/"
+        echo "regenerating chapters"
         cd src
         npm install
         npm run generate
         echo "Checking git status"
         git status
-        echo "Adding templates directory"
+        echo "Adding templates and content directory"
         git config --global user.email "barry_pollard@hotmail.com"
         git config --global user.name "Automatic Update"
         git add templates
-        echo "Commiting changed"
+        git add content
+        echo "Commiting changes"
         git commit -m "Regenerated chapters"
         echo 'machine github.com login ${{ secrets.PUSH_USERNAME }} password ${{ secrets.PUSH_TOKEN }}' > ~/.netrc
         git push origin master
