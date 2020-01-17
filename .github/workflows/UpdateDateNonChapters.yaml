@@ -11,14 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Setup checkout
+      with:
+        ref: master
       uses: actions/checkout@v2
-    - name: Checkout non-chapter files changes and update last updated date
+    - name: Update timestamp for modified files
       run: |
-        git checkout master
         echo "files changed in commit $GITHUB_SHA:"
         git diff-tree --no-commit-id --name-only -r $GITHUB_SHA
         echo "Updating timestamp in any template files"
         git diff-tree --no-commit-id --name-only -r $GITHUB_SHA | grep "^src/templates/[a-z]*/[0-9]*/[a-z0-9-]*.html" | xargs sed -i "s/\"dateModified\": \"[0-9-]*T/\"dateModified\": \"$(date '+%Y-%m-%d')T/"
+    - name: Commit changes
+      run: |
         echo "Checking git status"
         git status
         echo "Adding templates directory"
