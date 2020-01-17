@@ -1,4 +1,4 @@
-name: UpdateDateAndBuildChapters
+name: BuildSite
 on:
   push:
     branches:
