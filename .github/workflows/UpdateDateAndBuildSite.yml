@@ -4,8 +4,8 @@ on:
     branches:
       - master
     paths:
-      - templates/**
-      - content/**
+      - src/templates/**
+      - src/content/**
 
 jobs:
   build:
