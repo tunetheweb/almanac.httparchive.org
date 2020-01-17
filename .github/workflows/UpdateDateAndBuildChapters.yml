@@ -10,10 +10,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Setup Node.js for use with actions
-      uses: actions/setup-node@v1.1.0
-      with:
-        version:  12.x
+    - name: Dump env
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+        JOB_CONTEXT: ${{ toJson(job) }}
+      run: |
+        echo "GITHUB_CONTEXT:"
+        echo "$GITHUB_CONTEXT"
+        echo "JOB_CONTEXT:"
+        echo "$JOB_CONTEXT"
+        env | sort
     - name: Setup checkout
       with:
         ref: master
@@ -24,6 +30,10 @@ jobs:
         git diff-tree --no-commit-id --name-only -r $GITHUB_SHA
         echo "Updating timestamp in any markdown chapter files"
         #git diff-tree --no-commit-id --name-only -r $GITHUB_SHA | grep "^src\/content\/[a-z]*\/[0-9]*\/[a-z0-9-]*.md" | xargs sed -i "s/^last_updated: [0-9-]*T$/last_updated: $(date '+%Y-%m-%d')T/"
+    - name: Setup Node.js for use with actions
+      uses: actions/setup-node@v1.1.0
+      with:
+        version:  12.x
     - name: Generate the chapters
       run: |
         echo "regenerating chapters"
