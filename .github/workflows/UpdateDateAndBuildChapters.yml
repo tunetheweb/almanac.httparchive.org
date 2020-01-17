@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Setup checkout
+      uses: actions/checkout@v2
       with:
         ref: master
         fetch-depth: 1
-      uses: actions/checkout@v2
     - name: Update timestamp for modified files
       run: |
         echo "files changed in commit $GITHUB_SHA:"
