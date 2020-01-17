@@ -11,16 +11,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Setup checkout
+      uses: actions/checkout@v2
       with:
         ref: master
-      uses: actions/checkout@v2
+        fetch-depth: 0
     - name: Update timestamp for modified files
       run: |
         git pull
         echo "files changed in commit $GITHUB_SHA:"
         git diff-tree --no-commit-id --name-only -r $GITHUB_SHA
+        echo "Current timestamps:"
+        git diff-tree --no-commit-id --name-only -r $GITHUB_SHA | grep "^src\/templates\/[a-z]*\/[0-9]*\/[a-z0-9-]*.html" | xargs grep dateModified /dev/null
         echo "Updating timestamp in any template files"
         git diff-tree --no-commit-id --name-only -r $GITHUB_SHA | grep "^src/templates/[a-z]*/[0-9]*/[a-z0-9-]*.html" | xargs sed -i "s/\"dateModified\": \"[0-9-]*T/\"dateModified\": \"$(date '+%Y-%m-%d')T/"
+        echo "Current timestamps:"
+        git diff-tree --no-commit-id --name-only -r $GITHUB_SHA | grep "^src\/templates\/[a-z]*\/[0-9]*\/[a-z0-9-]*.html" | xargs grep dateModified /dev/null
     - name: Commit changes
       run: |
         echo "Checking git status"
