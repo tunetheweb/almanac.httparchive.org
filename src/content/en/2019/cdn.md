@@ -15,6 +15,8 @@ last_updated: 2019-12-04T00:00:00.000Z
 
 "Use a Content Delivery Network" was one of [Steve Souders original recommendations](http://stevesouders.com/hpws/rules.php) for making web sites load faster. It's advice that remains valid today, and in this chapter of the Web Almanac we're going to explore how widely Steve's recommendation has been adopted, how sites are using Content Delivery Networks (CDNs), and some of the features they're using.
 
+This is a test.
+
 Fundamentally, CDNs reduce latency—the time it takes for packets to travel between two points on a network, say from a visitor's device to a server—and latency is a key factor in how quickly pages load.
 
 A CDN reduces latency in two ways: by serving content from locations that are closer to the user and second, by terminating the TCP connection closer to the end user.
