@@ -13,7 +13,7 @@ jobs:
     - name: Setup checkout
       with:
         ref: master
-        fetch-depth: 1:
+        fetch-depth: 1
       uses: actions/checkout@v2
     - name: Update timestamp for modified files
       run: |
