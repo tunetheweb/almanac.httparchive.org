@@ -5,8 +5,11 @@ jobs:
     name: calibreapp/image-actions
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: calibreapp/image-actions
+      - name: Checkout this branch
+        uses: actions/checkout@master
+      - name: install webp lib
+        run: apt-get libwebp-dev
+      - name: Optimise images
         uses: calibreapp/image-actions@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
