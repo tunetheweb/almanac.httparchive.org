@@ -8,7 +8,7 @@ jobs:
       - name: Checkout this branch
         uses: actions/checkout@master
       - name: install webp lib
-        run: apt-get install libwebp-dev
+        run: sudo apt-get install libwebp-dev
       - name: Optimise images
         uses: calibreapp/image-actions@master
         with:
