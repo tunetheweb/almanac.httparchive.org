@@ -7,10 +7,6 @@ jobs:
     steps:
       - name: Checkout this branch
         uses: actions/checkout@master
-      - name: install webp lib
-        run: |
-          sudo apt-get install liborc-dev
-          sudo apt-get install libwebp-dev
       - name: Optimise images
         uses: calibreapp/image-actions@master
         with:
