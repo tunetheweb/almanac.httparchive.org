@@ -1,4 +1,4 @@
-name: GenerateChapters.yml
+name: GenerateChapters
 on:
   push:
     paths:
@@ -32,5 +32,5 @@ jobs:
         git config --global user.name "Automatic Update"
         git add src/templates
         echo "Commiting changes"
-        git commit -m "Regenerated chapters"
+        git diff-index --quiet HEAD || git commit -m "Regenerated chapters"
         git push
