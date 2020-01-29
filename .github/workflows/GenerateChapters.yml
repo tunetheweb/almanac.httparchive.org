@@ -24,7 +24,6 @@ jobs:
         echo "regenerating chapters"
         npm run generate
     - name: Commit changes
-      uses: actions/checkout@v2
       run: |
         echo "Checking git status"
         git status
