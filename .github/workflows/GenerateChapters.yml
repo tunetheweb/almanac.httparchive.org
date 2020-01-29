@@ -1,4 +1,4 @@
-name: GenerateChapters.yml
+name: GenerateChapters
 on:
   push:
     paths:
