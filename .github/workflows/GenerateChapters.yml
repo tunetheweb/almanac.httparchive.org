@@ -3,6 +3,8 @@
 name: Generate Chapters on Push
 on:
   push:
+    branches:
+      - master
     paths:
       - src/content/**
       - src/templates/**
