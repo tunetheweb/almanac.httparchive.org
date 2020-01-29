@@ -13,7 +13,7 @@ jobs:
     - name: Checkout branch
       uses: actions/checkout@v2
       with:
-        ref: ${{ GITHUB_REF }}
+        ref: ${{ github.ref }}
     - name: Setup Node.js for use with actions
       uses: actions/setup-node@v1.1.0
       with:
