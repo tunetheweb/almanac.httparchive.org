@@ -33,4 +33,4 @@ jobs:
         git add src/templates
         echo "Commiting changes"
         git commit -m "Regenerated chapters"
-        git push
+        git push origin HEAD:${{GITHUB_REF}}
