@@ -1,6 +1,6 @@
 name: GenerateChapters
 on:
-  push:
+  pull_request:
     paths:
       - src/content/**
       - src/templates/**
