@@ -1,6 +1,8 @@
-name: GenerateChapters
+#Runs "npm run generate" on any pushes to markdown, templates or generate scripts and adds a commit to this branch for changed files
+#We do it on a push, rather than on pull request, as that's more complicated (https://github.com/actions/checkout/issues/124)
+name: Generate Chapters on Push
 on:
-  pull_request:
+  push:
     paths:
       - src/content/**
       - src/templates/**
@@ -12,8 +14,6 @@ jobs:
     steps:
     - name: Checkout branch
       uses: actions/checkout@v2
-      with:
-        ref: ${{ github.ref }}
     - name: Setup Node.js for use with actions
       uses: actions/setup-node@v1.1.0
       with:
