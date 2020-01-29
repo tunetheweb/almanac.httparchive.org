@@ -1,8 +1,8 @@
 name: BuildSite
 on:
-  pull_request:
+  push:
     branches:
-      - master
+      - barry
     paths:
       - src/content/**
       - src/templates/**
