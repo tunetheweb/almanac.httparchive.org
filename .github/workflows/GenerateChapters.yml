@@ -1,6 +1,6 @@
 name: GenerateChapters.yml
 on:
-  pull_request:
+  push:
     paths:
       - src/content/**
       - src/templates/**
