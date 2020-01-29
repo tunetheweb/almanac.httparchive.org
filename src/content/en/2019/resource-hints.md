@@ -13,6 +13,8 @@ last_updated: 2019-11-23T00:00:00.000Z
 
 ## Introduction
 
+Barry
+
 [Resource hints](https://www.w3.org/TR/resource-hints/) provide "hints" to the browser about what resources will be needed soon. The action that the browser takes as a result of receiving this hint will vary depending on the type of resource hint; different resource hints kick off different actions. When used correctly, they can improve page performance by giving a head start to important anticipated actions.
 
 [Examples](https://youtu.be/YJGCZCaIZkQ?t=1956) of performance improvements as a result of resource hints include:
