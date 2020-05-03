@@ -25,12 +25,12 @@ jobs:
     - name: Update timestamp for modified files
       run: |
         echo "files changed in commit $GITHUB_SHA:"
-        git diff-tree --no-commit-id --name-only -r $GITHUB_SHA
+        git diff --no-commit-id --name-only -r $GITHUB_SHA
         echo "Updating timestamp in any markdown chapter files"
-        git diff --no-commit-id --name-only -r $GITHUB_SHA -- content | grep "^src\/content\/[a-z]*\/[0-9]*\/[a-z0-9-]*.md" | xargs -r sed -i "s/^last_updated: [0-9-]*T/last_updated: $(date '+%Y-%m-%d')T/"
+        git diff --no-commit-id --name-only -r $GITHUB_SHA -- src/content | grep "^src\/content\/[a-z]*\/[0-9]*\/[a-z0-9-]*.md" | xargs -r sed -i "s/^last_updated: [0-9-]*T/last_updated: $(date '+%Y-%m-%d')T/"
         echo "Updating timestamp in any template files"
-        git diff --no-commit-id --name-only -r $GITHUB_SHA -- templates | grep "^src\/templates\/[a-z][a-z]\/20[0-9][0-9]*\/[a-z0-9-_]*.html" | xargs -r sed -i "s/{% block date_modified %}[0-9-]*T/{% block date_modified %}$(date '+%Y-%m-%d')T/"
-        git diff --no-commit-id --name-only -r $GITHUB_SHA -- templates | grep "^src\/templates\/[a-z][a-z]\/[a-z0-9-_]*.html" | xargs -r sed -i "s/{% block date_modified %}[0-9-]*T/{% block date_modified %}$(date '+%Y-%m-%d')T/"
+        git diff --no-commit-id --name-only -r $GITHUB_SHA -- src/templates | grep "^src\/templates\/[a-z][a-z]\/20[0-9][0-9]*\/[a-z0-9-_]*.html" | xargs -r sed -i "s/{% block date_modified %}[0-9-]*T/{% block date_modified %}$(date '+%Y-%m-%d')T/"
+        git diff --no-commit-id --name-only -r $GITHUB_SHA -- src/templates | grep "^src\/templates\/[a-z][a-z]\/[a-z0-9-_]*.html" | xargs -r sed -i "s/{% block date_modified %}[0-9-]*T/{% block date_modified %}$(date '+%Y-%m-%d')T/"
         echo "Updated timestamps:"
         git diff
     - name: Generate the chapters
