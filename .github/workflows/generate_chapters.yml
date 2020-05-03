@@ -44,3 +44,4 @@ jobs:
       with:
         title: Update timestamps and generate chapters
         project: HTTP Archive
+        branch-suffix: timestamp
