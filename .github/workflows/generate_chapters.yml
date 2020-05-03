@@ -23,7 +23,7 @@ jobs:
     - name: Update timestamp for modified files
       env:
         GH_EVENT: ${{ toJson(github.event.commits[0]) }}
-        GH_EVENT_SHA: ${{ toJson(github.event.commits[0].id) }}
+        GH_EVENT_SHA: ${{ github.event.commits[0].id }}
       run: |
         echo "files changed in commit $GH_EVENT_SHA:"
         git diff-tree --no-commit-id --name-only -r $GH_EVENT_SHA
