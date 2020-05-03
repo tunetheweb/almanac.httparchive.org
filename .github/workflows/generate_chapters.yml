@@ -22,11 +22,9 @@ jobs:
         fetch-depth: 0
     - name: Update timestamp for modified files
       env:
-        EVENT_SHA: ${{ github.event.sha }}
-        EVENT_HEAD: ${{ github.event.head }}
-        EVENT_HEAD_SHA: ${{ github.event.head.sha }}
+        GH_EVENT: ${{ toJson(github.event) }}
       run: |
-        echo "files changed in commit $EVENT_SHA $EVENT_HEAD $EVENT_HEAD_SHA:"
+        echo "files changed in commit $GH_EVENT:"
         git diff-tree --no-commit-id --name-only -r $EVENT_SHA
     - name: Update timestamp for modified files2
       run: |
