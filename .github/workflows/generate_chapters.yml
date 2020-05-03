@@ -22,16 +22,15 @@ jobs:
         fetch-depth: 0
     - name: Update timestamp for modified files
       env:
-        GH_EVENT: ${{ toJson(github.event.commits[0]) }}
-        GH_EVENT_SHA: ${{ github.event.commits[0].id }}
+        COMMIT_SHA: ${{ github.event.commits[0].id }}
       run: |
         echo "files changed in commit $GH_EVENT_SHA:"
-        git diff-tree --no-commit-id --name-only -r $GH_EVENT_SHA
+        git diff-tree --no-commit-id --name-only -r $COMMIT_SHA
         echo "Updating timestamp in any markdown chapter files"
-        git diff-tree --no-commit-id --name-only -r $GH_EVENT_SHA src/content | grep "^src\/content\/[a-z]*\/[0-9]*\/[a-z0-9-]*.md" | xargs -r sed -i "s/^last_updated: [0-9-]*T/last_updated: $(date '+%Y-%m-%d')T/"
+        git diff-tree --no-commit-id --name-only -r $COMMIT_SHA src/content | grep "^src\/content\/[a-z]*\/[0-9]*\/[a-z0-9-]*.md" | xargs -r sed -i "s/^last_updated: [0-9-]*T/last_updated: $(date '+%Y-%m-%d')T/"
         echo "Updating timestamp in any template files"
-        git diff-tree --no-commit-id --name-only -r $GH_EVENT_SHA src/templates | grep "^src\/templates\/[a-z][a-z]\/[0-9]*\/[a-zA-Z0-9-_]*.html" | xargs -r sed -i "s/{% block date_modified %}[0-9-]*T/{% block date_modified %}$(date '+%Y-%m-%d')T/"
-        git diff-tree --no-commit-id --name-only -r $GH_EVENT_SHA src/templates | grep "^src\/templates\/[a-z][a-z]\/[a-zA-Z0-9-_]*.html" | xargs -r sed -i "s/{% block date_modified %}[0-9-]*T/{% block date_modified %}$(date '+%Y-%m-%d')T/"
+        git diff-tree --no-commit-id --name-only -r $COMMIT_SHA src/templates | grep "^src\/templates\/[a-z][a-z]\/20[0-9][0-9]\/[a-zA-Z0-9_]*.html" | xargs -r sed -i "s/{% block date_modified %}[0-9-]*T/{% block date_modified %}$(date '+%Y-%m-%d')T/"
+        git diff-tree --no-commit-id --name-only -r $COMMIT_SHA src/templates | grep "^src\/templates\/[a-z][a-z]\/[a-zA-Z0-9_]*.html" | xargs -r sed -i "s/{% block date_modified %}[0-9-]*T/{% block date_modified %}$(date '+%Y-%m-%d')T/"
         echo "Updated timestamps:"
         git diff
     - name: Setup Node.js for use with actions
