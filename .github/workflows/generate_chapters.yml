@@ -21,17 +21,21 @@ jobs:
       with:
         fetch-depth: 0
     - name: Update timestamp for modified files
+      env:
+        EVENT_SHA: ${{ github.event.sha }}
+        EVENT_HEAD: ${{ github.event.head }}
+        EVENT_HEAD_SHA: ${{ github.event.head.sha }}
       run: |
-        echo "files changed in commit ${{ github.event.sha }} ${{ github.event.head }}:"
-        git diff-tree --no-commit-id --name-only -r ${{ github.event.sha }}
+        echo "files changed in commit $EVENT_SHA $EVENT_HEAD $EVENT_HEAD_SHA:"
+        git diff-tree --no-commit-id --name-only -r $EVENT_SHA
     - name: Update timestamp for modified files2
       run: |
         echo "files changed in commit ${github.event.sha}:"
-        git diff-tree --no-commit-id --name-only -r ${{ github.event.head }}
+        git diff-tree --no-commit-id --name-only -r $EVENT_HEAD
     - name: Update timestamp for modified files3
       run: |
         echo "files changed in commit ${github.event.sha}:"
-        git diff-tree --no-commit-id --name-only -r ${{ github.event.head.sha }}
+        git diff-tree --no-commit-id --name-only -r $EVENT_HEAD_SHA
         echo "Updating timestamp in any markdown chapter files"
         git diff-tree --no-commit-id --name-only -r ${github.event.sha} src/content | grep "^src\/content\/[a-z]*\/[0-9]*\/[a-z0-9-]*.md" | xargs -r sed -i "s/^last_updated: [0-9-]*T/last_updated: $(date '+%Y-%m-%d')T/"
         echo "Updating timestamp in any template files"
