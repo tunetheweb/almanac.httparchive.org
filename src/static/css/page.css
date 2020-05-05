@@ -1,7 +1,6 @@
 .main {
   display: grid;
   grid-template-areas: 'index content';
-  grid-template-columns: 300px auto;
   grid-template-columns: 300px calc(100% - 300px); /* auto sometimes not set correctly on font zoom */
 }
 
