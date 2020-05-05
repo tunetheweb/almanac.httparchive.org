@@ -7,7 +7,7 @@ on:
     branches:
       - master
     paths:
-      - static/css/**
+      - src/static/css/**
 jobs:
   build:
     runs-on: ubuntu-latest
