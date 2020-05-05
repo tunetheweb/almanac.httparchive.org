@@ -15,6 +15,8 @@ jobs:
     steps:
     - name: Checkout branch
       uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: Update CSS version for modified CSS files
       env:
         COMMIT_SHA: ${{ github.event.commits[0].id }}
