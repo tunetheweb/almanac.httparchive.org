@@ -7,11 +7,6 @@ on:
       - '**.jpg'
       - '**.png'
       - '**.webp'
-  pull_request:
-    paths:
-      - '**.jpg'
-      - '**.png'
-      - '**.webp'
 jobs:
   build:
     name: calibreapp/image-actions
