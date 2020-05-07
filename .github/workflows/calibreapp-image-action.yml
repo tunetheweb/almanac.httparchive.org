@@ -1,5 +1,12 @@
 name: Compress images
 on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**.jpg'
+      - '**.png'
+      - '**.webp'
   pull_request:
     paths:
       - '**.jpg'
@@ -9,9 +16,11 @@ jobs:
   build:
     name: calibreapp/image-actions
     runs-on: ubuntu-latest
+    if: github.repository == 'bazzadp/almanac.httparchive.org'
     steps:
-      - uses: actions/checkout@master
-      - name: calibreapp/image-actions
-        uses: docker://calibreapp/github-image-actions
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Checkout Repo
+      uses: actions/checkout@master
+    - name: calibreapp/image-actions
+      uses: docker://calibreapp/github-image-actions
+      with:
+        githubToken: ${{ secrets.GITHUB_TOKEN }}
