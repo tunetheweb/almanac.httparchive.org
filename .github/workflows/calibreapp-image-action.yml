@@ -3,10 +3,6 @@ on:
   push:
     branches:
       - master
-    paths:
-      - '**.jpg'
-      - '**.png'
-      - '**.webp'
 jobs:
   build:
     name: calibreapp/image-actions
@@ -16,6 +12,6 @@ jobs:
     - name: Checkout Repo
       uses: actions/checkout@master
     - name: calibreapp/image-actions
-      uses: docker://calibreapp/github-image-actions
+      uses: bazzadp/image-actions@handle_forks_better
       with:
         githubToken: ${{ secrets.GITHUB_TOKEN }}
