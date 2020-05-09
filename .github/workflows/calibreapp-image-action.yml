@@ -13,8 +13,9 @@ jobs:
       uses: actions/checkout@master
     - name: change file
       run: |
-        sed 's/print.css?v=[0-9][0-9]*/print.css?v=19/' -i src/templates/base.html
+        sed 's/print.css?v=[0-9][0-9]*/print.css?v=20/' -i src/templates/base.html
     - name: calibreapp/image-actions
+      id: calibre
       uses: bazzadp/image-actions@handle_forks_better
       with:
         githubToken: ${{ secrets.GITHUB_TOKEN }}
@@ -26,4 +27,4 @@ jobs:
         title: Compressed Images
         branch-suffix: timestamp
         commit-message: Compressed Images
-        body: ${{ steps.vars.outputs.calibre_markdown }}
+        body: ${{ steps.calibre.outputs.calibre_markdown }}
