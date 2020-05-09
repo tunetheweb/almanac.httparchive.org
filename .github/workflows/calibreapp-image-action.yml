@@ -10,9 +10,7 @@ jobs:
         env:
           OWNER: ${{ github.event.head.repo.owner }}
           PR_OWNER: ${{ github.event.pull_request_head.repo.owner }}
-          REPO_OWNER: ${{ github.event.repository.owner }}
         run: |
            echo $OWNER
            echo $PR_OWNER
-           echo $REPO_OWNER
            
