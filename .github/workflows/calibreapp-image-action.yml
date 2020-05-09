@@ -1,4 +1,3 @@
-#Test5
 name: Compress images
 on:
   push:
@@ -14,7 +13,7 @@ jobs:
       uses: actions/checkout@master
     - name: change file
       run: |
-        sed 's/print.css?v=[0-9][0-9]*/print.css?v=$(date +%Y%m%d%H%M%S)/' -i src/templates/base.html
+        sed 's/print.css?v=[0-9][0-9]*/print.css?v=6/' -i src/templates/base.html
     - name: calibreapp/image-actions
       uses: bazzadp/image-actions@handle_forks_better
       with:
