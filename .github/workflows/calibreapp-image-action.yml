@@ -16,3 +16,12 @@ jobs:
       uses: bazzadp/image-actions@handle_forks_better
       with:
         githubToken: ${{ secrets.GITHUB_TOKEN }}
+        compressOnly: true
+
+    - name: Create New Pull Request
+      uses: peter-evans/create-pull-request@master
+      with:
+        title: Compressed Images
+        branch-suffix: timestamp
+        commit-message: Compressed Images
+        body: ${{ steps.vars.outputs.calibre_markdown }}
