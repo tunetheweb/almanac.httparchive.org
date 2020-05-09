@@ -12,6 +12,7 @@ jobs:
           PR_REPO: ${{ github.event.pull_request.head.repo.full_name }}
           THIS_REPO: ${{ github.repository }}
         run: |
+          echo "Only running this because it's a PR from the main repo"
            echo $PR_REPO
            echo $THIS_REPO
            
