@@ -9,10 +9,8 @@ jobs:
       - name: Print Env
         env:
           ACTOR: ${{ github.actor }}
-          REPO_OWNER: ${{ repo-owner }}
         run: |
            echo $ACTOR
-           echo $REPO_OWNER
       - uses: actions/checkout@master
       - name: calibreapp/image-actions
         uses: docker://calibreapp/github-image-actions
