@@ -8,9 +8,9 @@ jobs:
     steps:
       - name: Print Env
         env:
-          ACTOR: ${{ github.actor }}
+          OWNER: ${{ github.event.pull_request.repository.owner }}
         run: |
-           echo $ACTOR
+           echo $OWNER
       - uses: actions/checkout@master
       - name: calibreapp/image-actions
         uses: docker://calibreapp/github-image-actions
