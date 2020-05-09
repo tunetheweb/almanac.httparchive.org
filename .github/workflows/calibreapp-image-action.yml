@@ -9,7 +9,7 @@ jobs:
       - name: Print Env
         env:
           PR_REPO: ${{ github.event.pull_request.head.repo.full_name }}
-          THIS_REPO: ${{ github.repository.full_name }}
+          THIS_REPO: ${{ github.repository }}
         run: |
            echo $PR_REPO
            echo $THIS_REPO
