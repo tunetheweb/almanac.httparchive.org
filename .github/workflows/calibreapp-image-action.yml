@@ -9,13 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'bazzadp/almanac.httparchive.org'
     steps:
+    - name: Checkout Repo
+      uses: actions/checkout@master
     - name: show event env
       env:
         GITHUB_EVENT: ${{ github.event }}
       run: |
         echo "$GITHUB_EVENT"
-    - name: Checkout Repo
-      uses: actions/checkout@master
     - name: change file
       run: |
         sed 's/print.css?v=[0-9][0-9]*/print.css?v=27/' -i src/templates/base.html
