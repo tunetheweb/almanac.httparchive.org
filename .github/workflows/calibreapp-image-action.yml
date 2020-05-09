@@ -8,11 +8,11 @@ jobs:
     steps:
       - name: Print Env
         env:
-          OWNER: ${{ github.event.pull_request.repository.owner }}
+          OWNER: ${{ github.event.head.repo.owner }}
+          PR_OWNER: ${{ github.event.pull_request_head.repo.owner }}
+          REPO_OWNER: ${{ github.event.repository.owner }}
         run: |
            echo $OWNER
-      - uses: actions/checkout@master
-      - name: calibreapp/image-actions
-        uses: docker://calibreapp/github-image-actions
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           echo $PR_OWNER
+           echo $REPO_OWNER
+           
