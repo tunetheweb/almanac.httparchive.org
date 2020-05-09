@@ -7,7 +7,12 @@ jobs:
   build:
     name: calibreapp/image-actions
     runs-on: ubuntu-latest
-    if: github.repository == 'bazzad/almanac.httparchive.org'
+    if: github.repository == 'bazzadp/almanac.httparchive.org'
+    steps:
+      - name: show envenv:
+        GITHUB_EVENT: ${{ github.event }}
+        run: |
+          echo $GITHUB_EVENT
     steps:
     - name: Checkout Repo
       uses: actions/checkout@master
