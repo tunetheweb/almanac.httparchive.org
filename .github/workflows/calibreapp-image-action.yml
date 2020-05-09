@@ -13,7 +13,7 @@ jobs:
       uses: actions/checkout@master
     - name: show event env
       env:
-        THE_EVENT: ${{ github.event }}
+        THE_EVENT: ${{ github.event.repository.full_name }}
       run: |
         echo "$THE_EVENT"
     - name: change file
