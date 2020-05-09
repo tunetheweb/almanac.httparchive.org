@@ -9,6 +9,7 @@ jobs:
   build:
     name: calibreapp/image-actions
     runs-on: ubuntu-latest
+    if: github.repository == github.event.repository
     steps:
       - uses: actions/checkout@master
       - name: calibreapp/image-actions
