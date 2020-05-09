@@ -8,7 +8,9 @@ jobs:
     steps:
       - name: Print Env
         env:
-          PR_OWNER: ${{ github.event.pull_request.head.repo.owner }}
+          PR_REPO: ${{ github.event.pull_request.head.repo.fullname }}
+          THIS_REPO: ${{ github.repository.fullname }}
         run: |
            echo $PR_OWNER
+           echo $THIS_REPO
            
