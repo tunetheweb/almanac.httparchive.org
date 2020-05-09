@@ -3,7 +3,6 @@ on:
   pull_request:
 jobs:
   build:
-    if: github.actor == 'repo-owner'
     name: calibreapp/image-actions
     runs-on: ubuntu-latest
     steps:
