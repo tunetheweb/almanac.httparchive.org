@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'bazzadp/almanac.httparchive.org'
     steps:
-    - name: show env
+    - name: show event env
       env:
         GITHUB_EVENT: ${{ github.event }}
       run: |
-        echo $GITHUB_EVENT
+        echo "$GITHUB_EVENT"
     - name: Checkout Repo
       uses: actions/checkout@master
     - name: change file
