@@ -13,7 +13,7 @@ jobs:
       uses: actions/checkout@master
     - name: change file
       run: |
-        sed 's/print.css?v=[0-9][0-9]*/print.css?v=13/' -i src/templates/base.html
+        sed 's/print.css?v=[0-9][0-9]*/print.css?v=14/' -i src/templates/base.html
     - name: calibreapp/image-actions
       uses: bazzadp/image-actions@handle_forks_better
       with:
