@@ -1,12 +1,9 @@
 name: Compress images
 on:
   pull_request:
-    paths:
-      - '**.jpg'
-      - '**.png'
-      - '**.webp'
 jobs:
   build:
+    if: github.actor == 'repo-owner'
     name: calibreapp/image-actions
     runs-on: ubuntu-latest
     steps:
