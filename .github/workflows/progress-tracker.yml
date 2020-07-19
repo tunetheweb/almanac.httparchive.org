@@ -185,8 +185,8 @@ jobs:
               const contributorList = Object.entries(contributors).sort(([x, a], [y, b]) => {
                 return b.length - a.length
               }).map(([name, chapters]) => {
-                return `<span title="Chapters: ${chapters.join(', ')}">${name} (${chapters.length})</span>`).join(', ')
-              })
+                return `<span title="Chapters: ${chapters.join(', ')}">${name} (${chapters.length})</span>`
+              }).join(', ')
               return `### ${team} (${Object.keys(contributors).length})\n\n${contributorList}`
             }).join('\n\n')
             github.issues.update({
