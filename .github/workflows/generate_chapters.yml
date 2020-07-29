@@ -76,7 +76,7 @@ jobs:
         cd src
         npm install
         echo "regenerating chapters"
-        #npm run generate
+        npm run generate
         if OUTPUT=$(git status | grep -s ebook); then
           echo "::set-env name=gen_ebooks::true"
         fi
