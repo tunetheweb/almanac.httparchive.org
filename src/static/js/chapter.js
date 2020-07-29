@@ -12,6 +12,7 @@ function removeLazyLoading() {
   }
 }
 
+
 //Add an event handler to remove LazyLoading when entering print mode
 function removeLazyLoadingOnPrint() {
   if ("onbeforeprint" in window) {
