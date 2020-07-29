@@ -94,7 +94,8 @@ jobs:
         sudo aptitude install -y gdebi
     - name: Install PrinceXML
       run: |
-        sudo gdebi --non-interactive prince_13
+        wget https://www.princexml.com/download/prince_13.5-1_ubuntu20.04_amd64.deb
+        sudo gdebi --non-interactive prince_13.5-1_ubuntu20.04_amd64.deb
     - name: Create Pull Request
       id: cpr
       uses: peter-evans/create-pull-request@v3
