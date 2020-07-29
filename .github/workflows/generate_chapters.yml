@@ -116,12 +116,12 @@ jobs:
         sudo aptitude install -y gdebi
         wget https://www.princexml.com/download/prince_20200728-1_ubuntu20.04_amd64.deb
         sudo gdebi --non-interactive prince_20200728-1_ubuntu20.04_amd64.deb
-      if: ${{ env.gen_ebooks }} == 'true'
+      if: env.gen_ebooks == 'true'
     - name: Generating Ebooks
       run: |
         cd src
         npm run ebooks
-      if: ${{ env.gen_ebooks }} == 'true'
+      if: env.gen_ebooks == 'true'
     - name: Create Pull Request
       id: cpr
       uses: peter-evans/create-pull-request@v3
