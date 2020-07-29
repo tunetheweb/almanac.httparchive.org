@@ -7,7 +7,7 @@ on:
       - src/**.py
       - src/requirements.txt
 jobs:
-  pytest:
+  Python Tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -25,4 +25,3 @@ jobs:
         run: |
           cd src
           pytest
-  
