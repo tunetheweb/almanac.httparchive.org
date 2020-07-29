@@ -11,6 +11,10 @@
 # avoid needing GitHub Personal Access Tokens and to avoid merge conflicts
 #
 name: Generate Chapters on Push
+
+env:
+  PRINCE_PACKAGE: 'prince_20200728-1_ubuntu20.04_amd64.deb'
+
 on:
   push:
     branches:
@@ -110,8 +114,8 @@ jobs:
         cd /tmp
         sudo apt-get install -y aptitude
         sudo aptitude install -y gdebi
-        wget https://www.princexml.com/download/prince_20200728-1_ubuntu20.04_amd64.deb
-        sudo gdebi --non-interactive prince_20200728-1_ubuntu20.04_amd64.deb
+        wget https://www.princexml.com/download/${{ PRINCE_PACKAGE }}
+        sudo gdebi --non-interactive ${{ PRINCE_PACKAGE }}
     - name: Generating Ebooks
       if: env.gen_ebooks == 'true'
       run: |
