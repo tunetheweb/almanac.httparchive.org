@@ -77,6 +77,7 @@ jobs:
         npm install
         echo "regenerating chapters"
         #npm run generate
+        git status | grep -v ebook | wc -l
         echo "::set-env name=gen_ebooks::$(git status | grep -v ebook | wc -l)"
     - name: Set up Python 3.7
       uses: actions/setup-python@v2
@@ -102,15 +103,18 @@ jobs:
         #if [ `curl -s -w "%{http_code}" http://127.0.0.1:8080/en/2019/ -o /dev/null` != 200 ]; then false; fi
         #echo "Trying Home page"
         #if [ `curl -s -w "%{http_code}" http://127.0.0.1:8080 -o /dev/null` != 302 ]; then false; fi
-    - name: Generating Ebooks
+    - name: Installing PrinceXML
       if: ${{ env.gen_ebooks }}
       run: |
+        echo ${{ env.gen_ebooks }}
         cd /tmp
         sudo apt-get install -y aptitude
         sudo aptitude install -y gdebi
         wget https://www.princexml.com/download/prince_20200728-1_ubuntu20.04_amd64.deb
         sudo gdebi --non-interactive prince_20200728-1_ubuntu20.04_amd64.deb
-        echo "regenerating ebooks"
+    - name: Generating Ebooks
+      if: ${{ env.gen_ebooks }}
+      run: |
         cd src
         npm run ebooks
     - name: Create Pull Request
