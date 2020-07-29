@@ -12,6 +12,7 @@
 #
 name: Generate Chapters on Push
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
