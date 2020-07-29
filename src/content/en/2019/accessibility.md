@@ -13,7 +13,6 @@ published: 2019-11-11T00:00:00.000Z
 last_updated: 2020-05-27T00:00:00.000Z
 ---
 
-
 ## Introduction
 
 Accessibility on the web is essential for an inclusive and equitable society. As more of our social and work lives move to the online world, it becomes even more important for people with disabilities to be able to participate in all online interactions without barriers. Just as building architects can create or omit accessibility features such as wheelchair ramps, web developers can help or hinder the assistive technology users rely on.
