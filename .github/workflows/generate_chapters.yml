@@ -104,16 +104,16 @@ jobs:
         #echo "Trying Home page"
         #if [ `curl -s -w "%{http_code}" http://127.0.0.1:8080 -o /dev/null` != 302 ]; then false; fi
     - name: Installing PrinceXML
-      if: "${{ env.gen_ebooks }}" != "0"
+      if: ${{ gen_ebooks }}
       run: |
-        echo ${{ env.gen_ebooks }}
+        echo "BARRY:${{ env.gen_ebooks }}:"
         cd /tmp
         sudo apt-get install -y aptitude
         sudo aptitude install -y gdebi
         wget https://www.princexml.com/download/prince_20200728-1_ubuntu20.04_amd64.deb
         sudo gdebi --non-interactive prince_20200728-1_ubuntu20.04_amd64.deb
     - name: Generating Ebooks
-      if: "${{ env.gen_ebooks }}" != "0"
+      if: ${{ gen_ebooks }}
       run: |
         cd src
         npm run ebooks
