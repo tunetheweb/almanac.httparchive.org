@@ -103,7 +103,7 @@ jobs:
         #echo "Trying Home page"
         #if [ `curl -s -w "%{http_code}" http://127.0.0.1:8080 -o /dev/null` != 302 ]; then false; fi
     - name: Generating Ebooks
-      if: ${{ gen_ebooks }}
+      if: ${{ env.gen_ebooks }}
       run: |
         cd /tmp
         sudo apt-get install -y aptitude
