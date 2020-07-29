@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-20.04
     if: github.repository == 'bazzadp/almanac.httparchive.org'
     env:
-      gen_ebooks: false
+      gen_ebooks: 0
     steps:
     - name: Checkout branch
       uses: actions/checkout@v2
@@ -104,7 +104,7 @@ jobs:
         #echo "Trying Home page"
         #if [ `curl -s -w "%{http_code}" http://127.0.0.1:8080 -o /dev/null` != 302 ]; then false; fi
     - name: Installing PrinceXML
-      if: ${{ env.gen_ebooks }}
+      if: ${{ env.gen_ebooks }} > 0
       run: |
         echo ${{ env.gen_ebooks }}
         cd /tmp
@@ -113,7 +113,7 @@ jobs:
         wget https://www.princexml.com/download/prince_20200728-1_ubuntu20.04_amd64.deb
         sudo gdebi --non-interactive prince_20200728-1_ubuntu20.04_amd64.deb
     - name: Generating Ebooks
-      if: ${{ env.gen_ebooks }}
+      if: ${{ env.gen_ebooks }} > 0
       run: |
         cd src
         npm run ebooks
