@@ -94,7 +94,7 @@ jobs:
         sudo aptitude install -y gdebi
     - name: Install PrinceXML - libc6
       run: |
-        sudo gdebi --non-interactive libc6
+        sudo pt-get install -y libc6
     - name: Install PrinceXML
       run: |
         wget https://www.princexml.com/download/prince_20200728-1_ubuntu20.04_amd64.deb
