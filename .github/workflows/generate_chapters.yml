@@ -26,6 +26,8 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     if: github.repository == 'bazzadp/almanac.httparchive.org'
+    env:
+      gen_ebooks: false
     steps:
     - name: Checkout branch
       uses: actions/checkout@v2
