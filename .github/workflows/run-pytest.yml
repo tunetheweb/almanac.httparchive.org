@@ -1,18 +1,13 @@
-name: Run Pytest
+name: Run Python Tests
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - src/*.py
-      - src/requirements.txt
   pull_request:
     paths:
-      - src/*.py
+      - src/config/**
+      - src/**.py
       - src/requirements.txt
 jobs:
   pytest:
-    # Skip duplicate job for local branches
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -30,16 +25,4 @@ jobs:
         run: |
           cd src
           pytest
-      - name: Run website
-        run: |
-          cd src
-          python main.py background &
-      - name: Run tests
-        run: |
-          cd src
-          echo "Trying En Home page"
-          if [ `curl -sL -w "%{http_code}" http://localhost:8080/en/2019/ -o /dev/null` != 200 ]; then false; fi
-          echo "Trying Non-Existent page"
-          if [ `curl -sL -w "%{http_code}" http://localhost:8080/en/201/ -o /dev/null` != 200 ]; then false; fi
-          echo "Trying Home page"
-          if [ `curl -sL -w "%{http_code}" http://localhost:8080 -o /dev/null` != 302 ]; then false; fi
+  
