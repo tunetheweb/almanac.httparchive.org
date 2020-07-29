@@ -24,7 +24,7 @@ on:
       - src/package.json
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     if: github.repository == 'bazzadp/almanac.httparchive.org'
     steps:
     - name: Checkout branch
@@ -92,9 +92,6 @@ jobs:
     - name: Install PrinceXML - gdebi
       run: |
         sudo aptitude install -y gdebi
-    - name: Install PrinceXML - libc6
-      run: |
-        sudo apt-get install -y libc6
     - name: Install PrinceXML
       run: |
         wget https://www.princexml.com/download/prince_20200728-1_ubuntu20.04_amd64.deb
