@@ -51,7 +51,7 @@ def test_returns_correct_language_if_multiple_codes_are_specified():
 
 
 def test_returns_correct_language_if_multiple_codes_with_spaces_are_specified():
-    assert_language('ja-JP;q=0.5, en, en-GB;q=0.5', ENGLISH_LANGUAGE_CODE)
+    assert_language('ja-JP;q=0.5, en, en-GB;q=0.5', JAPANESE_LANGUAGE_CODE)
 
 
 def test_returns_best_match_language_if_multiple_codes_are_specified():
