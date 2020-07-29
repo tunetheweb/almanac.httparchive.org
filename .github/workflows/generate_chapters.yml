@@ -88,6 +88,7 @@ jobs:
         #if [ `curl -s -w "%{http_code}" http://127.0.0.1:8080 -o /dev/null` != 302 ]; then false; fi
     - name: Install PrinceXML
       run: |
+        sudo aptitude install gdebi
         sudo gdebi prince_package_debian_amd64.deb
     - name: Create Pull Request
       id: cpr
