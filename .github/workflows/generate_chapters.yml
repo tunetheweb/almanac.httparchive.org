@@ -77,8 +77,8 @@ jobs:
         npm install
         echo "regenerating chapters"
         #npm run generate
-        git status | grep -v ebook | wc -l
-        echo "::set-env name=gen_ebooks::$(git status | grep -v ebook | wc -l)"
+        git status | grep ebook | wc -l
+        echo "::set-env name=gen_ebooks::$(git status | grep ebook | wc -l)"
     - name: Set up Python 3.7
       uses: actions/setup-python@v2
       with:
