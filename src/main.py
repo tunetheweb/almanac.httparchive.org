@@ -380,9 +380,6 @@ if __name__ == '__main__':
     if (len(sys.argv) > 1 and sys.argv[1] == 'background'):
         # Turn off HTTPS redirects (automatically turned off for debug)
         talisman.force_https=False
-        if (len(sys.argv) > 2):
-            app.run(host='0.0.0.0', port=sys.argv[2])
-        else:
-            app.run(host='0.0.0.0', port=8080)
+        app.run(host='0.0.0.0', port=8080)
     else:
         app.run(host='0.0.0.0', port=8080, debug=True)
