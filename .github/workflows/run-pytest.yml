@@ -33,10 +33,10 @@ jobs:
       - name: Run website
         run: |
           cd src
-          python main.py &
+          python main.py background 60000 &
       - name: Run tests
         run: |
           cd src
           python main.py background &
-          if [ `curl -sL -w "%{http_code}" http://localhost:8080/en/2019/ -o /dev/null` != 200 ]; then false; fi
-          if [ `curl -sL -w "%{http_code}" http://localhost:8080/en/201/ -o /dev/null` != 200 ]; then false; fi
+          if [ `curl -sL -w "%{http_code}" http://localhost:60000/en/2019/ -o /dev/null` != 200 ]; then false; fi
+          if [ `curl -sL -w "%{http_code}" http://localhost:60000/en/201/ -o /dev/null` != 200 ]; then false; fi
