@@ -78,7 +78,9 @@ jobs:
         echo "regenerating chapters"
         #npm run generate
         git status | grep ebook | wc -l
-        echo "::set-env name=gen_ebooks::$(git status | grep ebook | wc -l)"
+        if OUTPUT=$(git status | grep -s ebook); then
+          echo "::set-env name=gen_ebooks::true"
+        fi
     - name: Set up Python 3.7
       uses: actions/setup-python@v2
       with:
@@ -104,7 +106,7 @@ jobs:
         #echo "Trying Home page"
         #if [ `curl -s -w "%{http_code}" http://127.0.0.1:8080 -o /dev/null` != 302 ]; then false; fi
     - name: Installing PrinceXML
-      if: ${{ gen_ebooks }}
+      if: ${{ env.gen_ebooks }}
       run: |
         echo "BARRY:${{ env.gen_ebooks }}:"
         cd /tmp
