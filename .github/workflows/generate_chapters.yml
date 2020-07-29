@@ -84,8 +84,8 @@ jobs:
         cd src
         echo "Trying En Home page"
         if [ `curl -s -w "%{http_code}" http://localhost:8080/en/2019/ -o /dev/null` != 200 ]; then false; fi
-        echo "Trying Home page"
-        if [ `curl -s -w "%{http_code}" http://localhost:8080 -o /dev/null` != 302 ]; then false; fi
+        #echo "Trying Home page"
+        #if [ `curl -s -w "%{http_code}" http://localhost:8080 -o /dev/null` != 302 ]; then false; fi
     - name: Install PrinceXML
       run: |
         sudo gdebi prince_package_debian_amd64.deb
