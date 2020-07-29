@@ -13,6 +13,7 @@ import os.path
 import re
 import sys
 
+
 # Set WOFF and WOFF2 caching to return 1 year as they should never change
 # Note this requires similar set up in app.yaml for Google App Engine
 class MyFlask(Flask):
