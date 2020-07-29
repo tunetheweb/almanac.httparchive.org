@@ -13,6 +13,7 @@
 name: Generate Chapters on Push
 
 env:
+  # Update periodically from https://www.princexml.com/latest/
   PRINCE_PACKAGE: 'prince_20200728-1_ubuntu20.04_amd64.deb'
 
 on:
@@ -31,7 +32,7 @@ jobs:
     runs-on: ubuntu-20.04
     if: github.repository == 'bazzadp/almanac.httparchive.org'
     env:
-      gen_ebooks: false
+      GEN_EBOOKS: false
     steps:
     - name: Checkout branch
       uses: actions/checkout@v2
@@ -82,7 +83,7 @@ jobs:
         echo "regenerating chapters"
         npm run generate
         if OUTPUT=$(git status | grep -s ebook); then
-          echo "::set-env name=gen_ebooks::true"
+          echo "::set-env name=GEN_EBOOKS::true"
         fi
     - name: Set up Python 3.7
       uses: actions/setup-python@v2
@@ -109,15 +110,15 @@ jobs:
         #echo "Trying Home page"
         #if [ `curl -s -w "%{http_code}" http://127.0.0.1:8080 -o /dev/null` != 302 ]; then false; fi
     - name: Installing PrinceXML
-      if: env.gen_ebooks == 'true'
+      if: env.GEN_EBOOKS == 'true'
       run: |
         cd /tmp
         sudo apt-get install -y aptitude
         sudo aptitude install -y gdebi
-        wget https://www.princexml.com/download/${{ PRINCE_PACKAGE }}
-        sudo gdebi --non-interactive ${{ PRINCE_PACKAGE }}
+        wget https://www.princexml.com/download/${{ env.PRINCE_PACKAGE }}
+        sudo gdebi --non-interactive ${{ env.PRINCE_PACKAGE }}
     - name: Generating Ebooks
-      if: env.gen_ebooks == 'true'
+      if: env.GEN_EBOOKS == 'true'
       run: |
         cd src
         npm run ebooks
