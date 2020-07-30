@@ -17,6 +17,7 @@ env:
   PRINCE_PACKAGE: 'prince_20200728-1_ubuntu20.04_amd64.deb'
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -31,14 +32,13 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     if: github.repository == 'bazzadp/almanac.httparchive.org'
-    env:
-      GEN_EBOOKS: false
     steps:
     - name: Checkout branch
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
     - name: Update CSS version for modified CSS files
+      if: github.event_name == 'push'
       env:
         COMMIT_SHA: ${{ github.event.commits[0].id }}
       run: |
@@ -49,6 +49,7 @@ jobs:
         git diff-tree --diff-filter=AM --no-commit-id --name-only -r $COMMIT_SHA src/static/css | grep "\.css" | sed 's!.*/!!' | sed "s/\(.*\)/s\/\1?v=[0-9][0-9]*\/\1?v=$(date +%Y%m%d%H%M%S)\//" | sed -f - -i src/templates/base.html
         git diff
     - name: Update JS version for modified CSS files
+      if: github.event_name == 'push'
       env:
         COMMIT_SHA: ${{ github.event.commits[0].id }}
       run: |
@@ -59,6 +60,7 @@ jobs:
         git diff-tree --diff-filter=AM --no-commit-id --name-only -r $COMMIT_SHA src/static/js | grep "\.js" | sed 's!.*/!!' | sed "s/\(.*\)/s\/\1?v=[0-9][0-9]*\/\1?v=$(date +%Y%m%d%H%M%S)\//" | sed -f - -i src/templates/base.html
         git diff
     - name: Update timestamp for modified files
+      if: github.event_name == 'push'
       env:
         COMMIT_SHA: ${{ github.event.commits[0].id }}
       run: |
@@ -82,9 +84,6 @@ jobs:
         npm install
         echo "regenerating chapters"
         npm run generate
-        if OUTPUT=$(git status | grep -s ebook); then
-          echo "::set-env name=GEN_EBOOKS::true"
-        fi
     - name: Set up Python 3.7
       uses: actions/setup-python@v2
       with:
@@ -105,23 +104,7 @@ jobs:
     - name: Run tests
       run: |
         cd src
-        #echo "Trying En Home page"
-        #if [ `curl -s -w "%{http_code}" http://127.0.0.1:8080/en/2019/ -o /dev/null` != 200 ]; then false; fi
-        #echo "Trying Home page"
-        #if [ `curl -s -w "%{http_code}" http://127.0.0.1:8080 -o /dev/null` != 302 ]; then false; fi
-    - name: Installing PrinceXML
-      if: env.GEN_EBOOKS == 'true'
-      run: |
-        cd /tmp
-        sudo apt-get install -y aptitude
-        sudo aptitude install -y gdebi
-        wget https://www.princexml.com/download/${{ env.PRINCE_PACKAGE }}
-        sudo gdebi --non-interactive ${{ env.PRINCE_PACKAGE }}
-    - name: Generating Ebooks
-      if: env.GEN_EBOOKS == 'true'
-      run: |
-        cd src
-        npm run ebooks
+        echo "Trying En Home page"
     - name: Create Pull Request
       id: cpr
       uses: peter-evans/create-pull-request@v3
