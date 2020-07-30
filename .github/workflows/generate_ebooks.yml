@@ -30,9 +30,9 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.7'
-    - name: Install Python Requirements
+    - name: Install Python requirements
       run: |
-        echo "Installing python requirements"
+        echo "Installing Python requirements"
         python -m pip install --upgrade pip
         cd src
         pip install -r requirements.txt
@@ -45,13 +45,11 @@ jobs:
       run: |
         echo "Installing PrinceXML"
         cd /tmp
-        sudo apt-get install -y aptitude
-        sudo aptitude install -y gdebi
         wget https://www.princexml.com/download/${{ env.PRINCE_PACKAGE }}
-        sudo gdebi --non-interactive ${{ env.PRINCE_PACKAGE }}
+        DEBIAN_FRONTEND=noninteractive sudo apt install -y ${{ env.PRINCE_PACKAGE }}
     - name: Run website
       run: |
-        echo "Running Website"
+        echo "Running website"
         cd src
         python main.py background &
     - name: Generating Ebooks
