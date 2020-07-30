@@ -17,29 +17,25 @@ on:
     branches:
       - main
     paths:
-      - src/config/**
-      - src/**.py
-      - src/requirements.txt
+      - src/**.js
+      - src/**.css
+      - src/**.html
       - src/content/**
-      - src/templates/**
-      - src/tools/generate/**
-      - src/static/css/**
-      - src/static/js/**
-      - src/package.json
+      - src/**.py
+      - src/**.json
+      - src/requirements.txt
   pull_request:
     paths:
-      - src/config/**
-      - src/**.py
-      - src/requirements.txt
+      - src/**.js
+      - src/**.css
+      - src/**.html
       - src/content/**
-      - src/templates/**
-      - src/tools/**
-      - src/static/css/**
-      - src/static/js/**
-      - src/package.json
+      - src/**.py
+      - src/**.json
+      - src/requirements.txt
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     if: github.repository == 'bazzadp/almanac.httparchive.org'
     steps:
     - name: Checkout branch
