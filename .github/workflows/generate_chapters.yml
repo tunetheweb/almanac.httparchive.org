@@ -11,20 +11,29 @@
 # avoid needing GitHub Personal Access Tokens and to avoid merge conflicts
 #
 name: Generate Chapters on Push
-
-env:
-  # Update periodically from https://www.princexml.com/latest/
-  PRINCE_PACKAGE: 'prince_20200728-1_ubuntu20.04_amd64.deb'
-
 on:
   workflow_dispatch:
   push:
     branches:
       - main
     paths:
+      - src/config/**
+      - src/**.py
+      - src/requirements.txt
       - src/content/**
       - src/templates/**
       - src/tools/generate/**
+      - src/static/css/**
+      - src/static/js/**
+      - src/package.json
+  pull_request:
+    paths:
+      - src/config/**
+      - src/**.py
+      - src/requirements.txt
+      - src/content/**
+      - src/templates/**
+      - src/tools/**
       - src/static/css/**
       - src/static/js/**
       - src/package.json
@@ -104,8 +113,9 @@ jobs:
     - name: Run tests
       run: |
         cd src
-        echo "Trying En Home page"
+        npm run tests
     - name: Create Pull Request
+      if: github.event_name != 'pull_request'
       id: cpr
       uses: peter-evans/create-pull-request@v3
       with:
