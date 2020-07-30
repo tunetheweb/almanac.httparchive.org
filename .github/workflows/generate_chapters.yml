@@ -109,7 +109,7 @@ jobs:
     - name: Run tests
       run: |
         cd src
-        npm run tests
+        npm run test
     - name: Create Pull Request
       if: github.event_name != 'pull_request'
       id: cpr
