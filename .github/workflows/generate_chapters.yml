@@ -18,6 +18,7 @@ on:
     branches:
       - main
     paths:
+      - github/**.yml
       - src/**.js
       - src/**.css
       - src/**.html
