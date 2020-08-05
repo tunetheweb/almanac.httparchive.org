@@ -37,7 +37,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: (github.event_name == 'push' && github.repository == 'bazzadp/almanac.httparchive.org') || github.event.pull_request.head.repo.full_name == 'bazzadp/almanac.httparchive.org'
+    if: (github.event_name == 'push' && github.repository == 'bazzadp/almanac.httparchive.org') >
+        || github.event.pull_request.head.repo.full_name == 'bazzadp/almanac.httparchive.org'
     steps:
     - name: Checkout branch
       uses: actions/checkout@v2
