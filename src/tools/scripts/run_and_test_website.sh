@@ -21,6 +21,7 @@ npm run generate
 
 echo "Starting website"
 python main.py background &
+sleep 2
 
 echo "Testing website"
 # Check website is running - use [p]ython so we don't match the grep itself
