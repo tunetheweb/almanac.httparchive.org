@@ -1,3 +1,10 @@
+
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/HTTPArchive/almanac.httparchive.org/blob/main/LICENSE) [![Generate Chapters GitHub Action](https://github.com/HTTPArchive/almanac.httparchive.org/workflows/Generate%20Chapters/badge.svg)](https://github.com/HTTPArchive/almanac.httparchive.org/actions?query=workflow%3A%22Generate+Chapters%22) [![Lint Code Base GitHub Action](https://github.com/HTTPArchive/almanac.httparchive.org/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/HTTPArchive/almanac.httparchive.org/actions?query=workflow%3A%22Lint+Code+Base%22) [![Security Headers Rating](https://img.shields.io/security-headers?url=https%3A%2F%2Falmanac.httparchive.org%2Fen%2F2019%2F)](https://securityheaders.com/?q=https%3A%2F%2Falmanac.httparchive.org%2Fen%2F2019%2F&followRedirects=on) [![TLS Observatory](https://img.shields.io/mozilla-observatory/grade-score/almanac.httparchive.org?publish)](https://observatory.mozilla.org/analyze/almanac.httparchive.org)
+
+[![Open Bug Pull Requests](https://img.shields.io/github/issues-pr/HTTPArchive/almanac.httparchive.org/bugs)](https://github.com/HTTPArchive/almanac.httparchive.org/pulls?q=is%3Apr+is%3Aopen+label%3Abugs) [![Open Dev Pull Requests](https://img.shields.io/github/issues-pr/HTTPArchive/almanac.httparchive.org/development)](https://github.com/HTTPArchive/almanac.httparchive.org/pulls?q=is%3Apr+is%3Aopen+label%3Adevelopment) [![Open Analysis Pull Requests](https://img.shields.io/github/issues-pr/HTTPArchive/almanac.httparchive.org/analysis)](https://github.com/HTTPArchive/almanac.httparchive.org/pulls?q=is%3Apr+is%3Aopen+label%3Aanalysis) [![Open Translation Pull Requests](https://img.shields.io/github/issues-pr/HTTPArchive/almanac.httparchive.org/translation)](https://github.com/HTTPArchive/almanac.httparchive.org/pulls?q=is%3Apr+is%3Aopen+label%3Atranslation) [![Open Writing Pull Requests](https://img.shields.io/github/issues-pr/HTTPArchive/almanac.httparchive.org/writing)]()
+
+
 # 📕 Web Almanac
 
 The Web Almanac is HTTP Archive's annual **state of the web** report.
