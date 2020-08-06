@@ -31,7 +31,7 @@ echo "Installing node modules"
 npm install
 
 echo "Building website"
-npm run generate
+#npm run generate
 
 echo "Starting website"
 python main.py background &
