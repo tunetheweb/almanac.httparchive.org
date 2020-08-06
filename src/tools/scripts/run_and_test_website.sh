@@ -24,12 +24,12 @@ python main.py background &
 sleep 5
 
 echo "Running ps"
-ps
+ps -ef
 
 echo "Testing website"
-ps | grep "python main.py"
+ps -ef | grep "python main.py"
 echo "Check website is running - use [p]ython so we don't match the grep itself"
-ps | grep "[p]ython main.py"
+ps -ef | grep "[p]ython main.py"
 echo "Running status code tests"
 npm run test
 
