@@ -4,7 +4,7 @@
 #
 # This generates the chapters and tests the website
 #
-# For pushed to main it also updates timestamps and increments CSS.
+# For pushes to main it also updates timestamps and increments CSS.
 # Then we open a Pull Request for any changes generated. We do this
 # only on a push, rather than on pull request, and only on main to
 # avoid avoid merge conflicts acorss pull requests (and also because
@@ -25,15 +25,6 @@ on:
       - src/**.py
       - src/**.json
       - src/requirements.txt
-  pull_request:
-    paths:
-      - src/**.js
-      - src/**.css
-      - src/**.html
-      - src/content/**.md
-      - src/**.py
-      - src/**.json
-      - src/requirements.txt
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -44,12 +35,11 @@ jobs:
       with:
         fetch-depth: 0
     - name: Update version numbers and timestamps
-      if: github.event_name == 'push'
       env:
-        COMMIT_SHA: ${{ github.event.commits[0].id }}
-      run: ./src/tools/scripts/update_timestamps_versions.sh
+        COMMIT_SHA: ${{ github.sha }}
+      run: ./src/tools/scripts/update_timestamps_versions_on_commit.sh
     - name: Setup Node.js for use with actions
-      uses: actions/setup-node@v1.1.0
+      uses: actions/setup-node@v1
       with:
         version:  12.x
     - name: Set up Python 3.7
@@ -59,7 +49,7 @@ jobs:
     - name: Run the website
       run: ./src/tools/scripts/run_and_test_website.sh
     - name: Create Pull Request
-      if: github.event_name != 'pull_request'
+      id: cpr
       uses: peter-evans/create-pull-request@v3
       with:
         title: Update datestamps and generate chapters
@@ -72,3 +62,5 @@ jobs:
 
           [1]: https://github.com/peter-evans/create-pull-request
         labels: generate chapters
+    - name: Check outputs
+      run: echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
