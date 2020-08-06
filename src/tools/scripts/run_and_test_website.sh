@@ -21,7 +21,10 @@ npm run generate
 
 echo "Starting website"
 python main.py background &
-sleep 2
+sleep 5
+
+echo "Running ps"
+ps
 
 echo "Testing website"
 ps | grep "python main.py"
