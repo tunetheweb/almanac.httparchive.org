@@ -1,7 +1,21 @@
 #!/bin/bash
 
-# exit when any command fails
+######################################
+## Custom Web Almanac script        ##
+######################################
+#
+# This script installs all the required dependencies needed to run the
+# Web Almanac website providing you have python and node installed.
+#
+# It also runs our tests to ensure the website is working for all pages.
+#
+# It is used by various GitHub actions to build and test the site.
+#
+
+# exit when any command fails instead of trying to continue on
 set -e
+# echo commands to screen for debugging
+set -x
 
 # This script must be run from src directory
 if [ -d "src" ]; then
@@ -21,16 +35,11 @@ echo "Building website"
 
 echo "Starting website"
 python main.py background &
-sleep 5
-
-echo "Running ps"
-ps -ef
+# Check website is running as won't have got feedback as backgrounded
+# use [p]ython so we don't match the grep itself
+ps -ef | grep "[p]ython main.py"
 
 echo "Testing website"
-ps -ef | grep "python main.py"
-echo "Check website is running - use [p]ython so we don't match the grep itself"
-ps -ef | grep "[p]ython main.py"
-echo "Running status code tests"
 npm run test
 
 echo "Website started successfully"
