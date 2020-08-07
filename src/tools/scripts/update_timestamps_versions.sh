@@ -12,7 +12,7 @@
 # This script is run in a GitHub Action and should not need to be run manually
 #
 
-if [[ "$#" -eq 1 ]]; then
+if [ "$#" -eq 1 ]; then
 COMMIT_SHA=$1
 fi
 
@@ -33,7 +33,7 @@ fi
 # local development and debugging of this script.
 # Default case for Linux sed, just use "-i -r"
 SED_FLAGS=(-i -r)
-if [[ "$(uname)" == 'Darwin' ]]; then
+if [ "$(uname)" = "Darwin" ]; then
   echo "Running MacOS"
   SED_FLAGS=(-i "" -E)
 fi
@@ -63,7 +63,7 @@ function update_timestamp {
   CHANGED_FILES=$(git diff-tree --diff-filter=AM --no-commit-id --name-only -r "${COMMIT_SHA}" "${DIRECTORY}")
   for CHANGED_FILE in ${CHANGED_FILES}
   do
-    if [[ ${CHANGED_FILE} =~ ${FILE_PATTERN} ]]; then
+    if [[ "${CHANGED_FILE}" =~ ${FILE_PATTERN} ]]; then
       echo "Updating ${CHANGED_FILE} timestamp to ${NEW_SHORT_DATE}:"
       if [ "${DIRECTORY}" = "content" ]; then
         sed "${SED_FLAGS[@]}" "s/^last_updated: [0-9-]+T/last_updated: ${NEW_SHORT_DATE}T/" "../${CHANGED_FILE}"
