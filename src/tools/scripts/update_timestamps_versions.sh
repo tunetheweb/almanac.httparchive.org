@@ -65,7 +65,7 @@ function update_timestamp {
   do
     if [[ ${CHANGED_FILE} =~ ${FILE_PATTERN} ]]; then
       echo "Updating ${CHANGED_FILE} timestamp to ${NEW_SHORT_DATE}:"
-      if [ ${DIRECTORY} = "content" ]; then
+      if [ "${DIRECTORY}" = "content" ]; then
         sed "${SED_FLAGS[@]}" "s/^last_updated: [0-9-]+T/last_updated: ${NEW_SHORT_DATE}T/" "../${CHANGED_FILE}"
       else
         sed "${SED_FLAGS[@]}" "s/block date_modified %}[0-9-]+T/block date_modified %}${NEW_SHORT_DATE}T/" "../${CHANGED_FILE}"
