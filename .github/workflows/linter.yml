@@ -28,24 +28,21 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-      - name: Lint Code Base - Changes Only
+      - name: Set all or changes only
         if: github.event_name == 'push' || github.event_name == 'pull_request'
-        uses: docker://github/super-linter:v3
+        run: |
+          echo "::set-env name=VALIDATE_ALL_CODEBASE::false"
+      - name: Lint Code Base
+        uses: github/super-linter@v3
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_BASH: true
           VALIDATE_CSS: true
           VALIDATE_HTML: true
           VALIDATE_JAVASCRIPT_ES: true
           VALIDATE_JSON: true
           VALIDATE_MD: true
-          VALIDATE_PYTHON: true
+          VALIDATE_PYTHON_PYLINT: true
           VALIDATE_SQL: true
           VALIDATE_YAML: true
-      - name: Lint Code Base - All
-        if: github.event_name == 'workflow_dispatch'
-        uses: docker://github/super-linter:v3
-        env:
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
