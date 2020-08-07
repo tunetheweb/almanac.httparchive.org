@@ -27,7 +27,7 @@ fi
 
 # This script must be run from src directory
 if [[ -d "src" ]]; then
-  cd src | exit
+  cd src || exit
 fi
 
 # You have to do some funky stuff for the version of sed on MacOS
@@ -50,7 +50,7 @@ git diff-tree --diff-filter=AM --no-commit-id --name-only -r "${COMMIT_SHA}"
 function update_versions {
   FILE_TYPE=$1
   echo "Updating ${FILE_TYPE} versions"
-  CHANGED_FILES=$(git diff-tree --diff-filter=AM --no-commit-id --name-only -r ${COMMIT_SHA} static/${FILE_TYPE} | grep "\.${FILE_TYPE}")
+  CHANGED_FILES=$(git diff-tree --diff-filter=AM --no-commit-id --name-only -r "${COMMIT_SHA}" "static/${FILE_TYPE}" | grep "\.${FILE_TYPE}")
   for CHANGED_FILE in ${CHANGED_FILES}
   do
     CHANGED_FILE=$(basename "${CHANGED_FILE}")
@@ -63,7 +63,7 @@ function update_timestamp {
   DIRECTORY=$1
   FILE_PATTERN=$2
   echo "Updating '${DIRECTORY}' timestamps which match '${FILE_PATTERN}'"
-  CHANGED_FILES=$(git diff-tree --diff-filter=AM --no-commit-id --name-only -r ${COMMIT_SHA} ${DIRECTORY})
+  CHANGED_FILES=$(git diff-tree --diff-filter=AM --no-commit-id --name-only -r "${COMMIT_SHA}" "${DIRECTORY}")
   for CHANGED_FILE in ${CHANGED_FILES}
   do
     if [[ "${CHANGED_FILE}" =~ ${FILE_PATTERN} ]]; then
