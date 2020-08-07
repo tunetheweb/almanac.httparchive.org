@@ -16,6 +16,7 @@
 #
 name: Lint Code Base
 on:
+  - workflow_dispatch
   - push
   - pull_request
 jobs:
@@ -28,14 +29,15 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
       - name: Lint Code Base
-        uses: docker://github/super-linter:v3.3.0
+        uses: docker://github/super-linter:v3
         env:
-          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: main
-          VALIDATE_YAML: true
-          VALIDATE_JSON: true
-          VALIDATE_PYTHON: true
-          VALIDATE_JAVASCRIPT_ES: true
-          VALIDATE_CSS: true
-          VALIDATE_MD: true
-          VALIDATE_HTML: true
+          VALIDATE_CSS: false
+          VALIDATE_HTML: false
+          VALIDATE_JAVASCRIPT_ES: false
+          VALIDATE_JSON: false
+          VALIDATE_MD: false
+          VALIDATE_PYTHON: false
+          VALIDATE_SQL: false
+          VALIDATE_YAML: false
