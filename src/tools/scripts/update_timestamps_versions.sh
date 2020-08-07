@@ -12,9 +12,6 @@
 # This script is run in a GitHub Action and should not need to be run manually
 #
 
-# echo commands to screen for debugging
-#set -x
-
 if [[ "$#" -eq 1 ]]; then
 COMMIT_SHA=$1
 fi
@@ -66,9 +63,9 @@ function update_timestamp {
   CHANGED_FILES=$(git diff-tree --diff-filter=AM --no-commit-id --name-only -r "${COMMIT_SHA}" "${DIRECTORY}")
   for CHANGED_FILE in ${CHANGED_FILES}
   do
-    if [[ "${CHANGED_FILE}" =~ ${FILE_PATTERN} ]]; then
+    if [[ ${CHANGED_FILE} =~ ${FILE_PATTERN} ]]; then
       echo "Updating ${CHANGED_FILE} timestamp to ${NEW_SHORT_DATE}:"
-      if [[ "${DIRECTORY}" = "content" ]]; then
+      if [[ ${DIRECTORY} = "content" ]]; then
         sed "${SED_FLAGS[@]}" "s/^last_updated: [0-9-]+T/last_updated: ${NEW_SHORT_DATE}T/" "../${CHANGED_FILE}"
       else
         sed "${SED_FLAGS[@]}" "s/block date_modified %}[0-9-]+T/block date_modified %}${NEW_SHORT_DATE}T/" "../${CHANGED_FILE}"
