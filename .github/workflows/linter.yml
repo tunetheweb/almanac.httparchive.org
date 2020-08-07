@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-      - name: Lint Code Base Changes
+      - name: Lint Code Base - Changes Only
         if: github.event_name == 'push' || github.event_name == 'pull_request'
         uses: docker://github/super-linter:v3
         env:
@@ -42,10 +42,9 @@ jobs:
           VALIDATE_PYTHON: true
           VALIDATE_SQL: true
           VALIDATE_YAML: true
-      - name: Lint Code Base All
+      - name: Lint Code Base - All
         if: github.event_name == 'workflow_dispatch'
         uses: docker://github/super-linter:v3
         env:
           VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: main
-          VALIDATE_JAVASCRIPT_STANDARD: false
