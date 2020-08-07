@@ -13,13 +13,13 @@
 #
 
 # echo commands to screen for debugging
-set -x
+#set -x
 
 if [ "$#" -eq 1 ]; then
 COMMIT_SHA=$1
 fi
 
-if [ "{COMMIT_SHA}" = "" ]; then
+if [ "{COMMIT_SHA}" == "" ]; then
     echo "Must supply commit sha"
     exit 1
 fi
