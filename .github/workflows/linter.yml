@@ -16,6 +16,7 @@
 #
 name: Lint Code Base
 on:
+  - workflow_dispatch
   - push
   - pull_request
 jobs:
@@ -27,15 +28,24 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-      - name: Lint Code Base
-        uses: docker://github/super-linter:v3.3.0
+      - name: Lint Code Base Changes
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        uses: docker://github/super-linter:v3
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
-          VALIDATE_YAML: true
-          VALIDATE_JSON: true
-          VALIDATE_PYTHON: true
-          VALIDATE_JAVASCRIPT_ES: true
           VALIDATE_CSS: true
-          VALIDATE_MD: true
           VALIDATE_HTML: true
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_JSON: true
+          VALIDATE_MD: true
+          VALIDATE_PYTHON: true
+          VALIDATE_SQL: true
+          VALIDATE_YAML: true
+      - name: Lint Code Base All
+        if: github.event_name == 'workflow_dispatch'
+        uses: docker://github/super-linter:v3
+        env:
+          VALIDATE_ALL_CODEBASE: true
+          DEFAULT_BRANCH: main
+          VALIDATE_JAVASCRIPT_STANDARD: false
