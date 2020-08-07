@@ -36,7 +36,6 @@ jobs:
         uses: docker://github/super-linter:v3
         env:
           DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_BASH: true
           VALIDATE_CSS: true
           VALIDATE_HTML: true
