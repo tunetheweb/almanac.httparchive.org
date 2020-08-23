@@ -3,4 +3,4 @@ template: |
 
   $CHANGES
 exclude-labels:
-  'generate chapters'
+  - 'generate chapters'
