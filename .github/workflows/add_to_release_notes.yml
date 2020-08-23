@@ -1,0 +1,23 @@
+######################################
+## Custom Web Almanac GitHub action ##
+######################################
+#
+# This updates the current draft release notes with this commit
+# Excluding certain automated commits (e.g. Generate Chapters or Ebooks)
+#
+name: Add to Release Notes
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.repository == 'bazzadp/almanac.httparchive.org'
+    if: startsWith(github.event.head_commit.message,'Generate Chapters') != true
+    if: startsWith(github.event.head_commit.message,'Regenerate Ebooks') != true
+    steps:
+    - name: Update release notes
+      uses: release-drafter/release-drafter@v5.11.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
