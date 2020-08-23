@@ -13,10 +13,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: |
-      github.repository == 'bazzadp/almanac.httparchive.org'
-      && startsWith(github.event.head_commit.message,'Generate Chapters') != true
-      && startsWith(github.event.head_commit.message,'Regenerate Ebooks') != true
+    if: github.repository == 'bazzadp/almanac.httparchive.org
     steps:
     - name: Update release notes
       uses: release-drafter/release-drafter@v5.11.0
