@@ -2,5 +2,5 @@ template: |
   ## What’s Changed
 
   $CHANGES
-exclude-labels: |
+exclude-labels:
   'generate chapters'
