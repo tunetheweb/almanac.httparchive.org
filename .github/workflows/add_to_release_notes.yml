@@ -11,7 +11,7 @@ on:
     branches:
       - main
 jobs:
-  build:
+  release-notes:
     runs-on: ubuntu-latest
     if: github.repository == 'bazzadp/almanac.httparchive.org'
     steps:
