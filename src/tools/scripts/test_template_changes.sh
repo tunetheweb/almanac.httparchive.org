@@ -29,6 +29,7 @@ if [ -d "${TEMP_TEMPLATES_DIRECTORY}" ]; then
 fi
 
 echo "Installing node modules"
+grep prettier package*.json
 npm install
 
 echo "Building website"
@@ -42,6 +43,7 @@ git checkout main
 
 echo "Reinstalling node modules"
 rm -rf node_modules
+grep prettier package*.json
 npm install
 
 echo "Building website"
