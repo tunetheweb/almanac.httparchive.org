@@ -52,7 +52,6 @@ echo "Diff the two folders"
 set +e
 diff -r templates "${TEMP_TEMPLATES_DIRECTORY}" > "${DIFF_FILENAME}"
 set -e
-diff -r templates templates_new
 
 echo "Differences:"
 cat "${DIFF_FILENAME}"
