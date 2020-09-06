@@ -23,13 +23,14 @@ jobs:
   lint:
     name: Lint Code Base
     # Skip duplicate job for local branches
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository || startsWith(github.event.pull_request.issue.title,'Bump github/super-linter')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2.3.2
       - name: Set VALIDATE_ALL_CODEBASE variable
-        if: (github.event_name == 'push' || github.event_name == 'pull_request') && startsWith(github.event.pull_request.issue.title,'Bump github/super-linter')
+        # Only run the full workflow for manual runs of if upgrading the super linter
+        if: github.event_name != 'workflow' && startsWith(github.event.pull_request.issue.title,'Bump github/super-linter') != 'true'
         run: |
           echo "::set-env name=VALIDATE_ALL_CODEBASE::false"
       - name: Lint Code Base
