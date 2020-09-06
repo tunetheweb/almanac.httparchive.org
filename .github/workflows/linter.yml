@@ -2,16 +2,8 @@
 ## Linter GitHub Actions ##
 ###########################
 #
-# Documentation:
-# https://help.github.com/en/articles/workflow-syntax-for-github-actions
+# Documentation: https://github.com/github/super-linter/
 #
-# For the Web Almanac we have the following rule changes from the defaults:
-#  * Markdown - we're a bit more relaxed about this since authors may be less technical
-#  * Python - Only change from default is to set ignored-modules=flask, flask-talisman...etc.
-#  * CSS - Tweaked to ignore some Prince/Normalise exceptions and some whitespace exceptions
-#  * JS - default rules
-#  * JSON - default rules
-#  * YML - default rules
 # Exception config files are in the .github/linters directory
 #
 name: Lint Code Base
