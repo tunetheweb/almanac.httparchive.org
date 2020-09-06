@@ -28,7 +28,7 @@ jobs:
         # Only run the full workflow for manual runs or if upgrading the super linter
         if: |
             github.event_name != 'workflow' &&
-            startsWith(github.event.pull_request.title,'Bump github/super-linter') != 'true'
+            startsWith(github.event.pull_request.title,'Bump github/super-linter') != true
         run: |
           echo "::set-env name=VALIDATE_ALL_CODEBASE::false"
       - name: Lint Code Base
