@@ -29,7 +29,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2.3.2
       - name: Set VALIDATE_ALL_CODEBASE variable
-        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        if: (github.event_name == 'push' || github.event_name == 'pull_request') && startsWith(github.event.pull_request.issue.title,'Bump github/super-linter')
         run: |
           echo "::set-env name=VALIDATE_ALL_CODEBASE::false"
       - name: Lint Code Base
