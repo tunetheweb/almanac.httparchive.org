@@ -33,6 +33,8 @@ on:
       - '**.webp'
 jobs:
   build:
+    name: calibreapp/image-actions
+    runs-on: ubuntu-latest
     # Only run on main repo as PRs can't be updated on forks
     if: github.repository == 'bazzadp/almanac.httparchive.org'
     env:
@@ -43,15 +45,13 @@ jobs:
       if: github.event_name != 'pull_request'
       run: |
         echo "::set-env name=COMPRESS_ONLY::true"
+    - name: Checkout branch
+      uses: actions/checkout@v2.3.2
     - name: calibreapp/image-actions
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2.3.2
-        - name: calibreapp/image-actions
-          uses: docker://calibreapp/github-image-actions
-          with:
-            githubToken: ${{ secrets.GITHUB_TOKEN }}
-            compressOnly: ${{ env.COMPRESS_ONLY }}
+      uses: docker://calibreapp/github-image-actions
+      with:
+        githubToken: ${{ secrets.GITHUB_TOKEN }}
+        compressOnly: ${{ env.COMPRESS_ONLY }}
     - name: Create Pull Request
       # If it's not na pull request then commit any changes as a new PR
       if: github.event_name != 'pull_request'
