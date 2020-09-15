@@ -62,5 +62,5 @@ jobs:
         title: Auto Compress Images
         branch-suffix: timestamp
         commit-message: Compress Images
-        body: ${{ steps.calibre.outputs.markdown }}
+        body: ${{ steps.calibre.output.markdown }}
         labels: performance
