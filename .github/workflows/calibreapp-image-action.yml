@@ -53,14 +53,11 @@ jobs:
       with:
         githubToken: ${{ secrets.GITHUB_TOKEN }}
         compressOnly: ${{ env.COMPRESS_ONLY }}
-    - name: Echo output
-      run: |
-        echo "${{ steps.calibre.outputs.markdown }}"
     - name: Create Pull Request
       # If it's not a pull request then commit any changes as a new PR
       if: |
-        github.event_name != 'pull_request'
-      # && steps.calibre.outputs.markdown != ''
+        github.event_name != 'pull_request' &&
+        steps.calibre.outputs.markdown != ''
       id: cpr
       uses: peter-evans/create-pull-request@v3.3.0
       with:
