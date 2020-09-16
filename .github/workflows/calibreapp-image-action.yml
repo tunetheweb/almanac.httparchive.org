@@ -57,7 +57,7 @@ jobs:
       # If it's not a pull request then commit any changes as a new PR
       if: |
         github.event_name != 'pull_request' &&
-        steps.calibre.output.markdown != ""
+        steps.calibre.output.markdown != ''
       id: cpr
       uses: peter-evans/create-pull-request@v3.3.0
       with:
