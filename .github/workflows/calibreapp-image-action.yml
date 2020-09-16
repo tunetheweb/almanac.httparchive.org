@@ -37,7 +37,9 @@ jobs:
     name: calibreapp/image-actions
     runs-on: ubuntu-latest
     # Only run on main repo as PRs can't be updated on forks
-    if: github.repository == 'bazzadp/almanac.httparchive.org'
+    if: |
+      github.repository == 'bazzadp/almanac.httparchive.org' &&
+      github.event.pull_request.head.repo.full_name == github.repository
     env:
       COMPRESS_ONLY: false
     steps:
