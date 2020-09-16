@@ -40,8 +40,8 @@ jobs:
     env:
       COMPRESS_ONLY: false
     steps:
-    - name: Set VALIDATE_ALL_CODEBASE variable to false
-      # If it's not na pull request then run in compressOnly mode
+    - name: Set COMPRESS_ONLY variable to true
+      # If it's not a pull request then run in compressOnly mode
       if: github.event_name != 'pull_request'
       run: |
         echo "::set-env name=COMPRESS_ONLY::true"
