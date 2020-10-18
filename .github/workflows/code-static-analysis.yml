@@ -2,7 +2,9 @@ name: "Code Scanning - Action"
 
 on:
   push:
-  pull_request:
+    paths:
+      - '**.js'
+      - '**.py'
   schedule:
     #        ┌───────────── minute (0 - 59)
     #        │ ┌───────────── hour (0 - 23)
@@ -39,6 +41,8 @@ jobs:
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
+        with:
+          queries: +security-and-quality
         # Override language selection by uncommenting this and choosing your languages
         # with:
         #   languages: go, javascript, csharp, python, cpp, java
