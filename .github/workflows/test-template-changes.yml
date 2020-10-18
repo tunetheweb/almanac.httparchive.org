@@ -33,9 +33,9 @@ jobs:
       with:
         fetch-depth: 0
     - name: Setup Node.js for use with actions
-      uses: actions/setup-node@v1.4.2
+      uses: actions/setup-node@v2-beta
       with:
-        node-version: 12.x
+        node-version: '12'
     - name: Test Template Changes
       id: test-template-changes
       run: ./src/tools/scripts/test_template_changes.sh
