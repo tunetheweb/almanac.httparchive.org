@@ -371,7 +371,7 @@ function toggleDescription(event) {
     return;
   }
 
-  description = document.querySelector('#' + description_id);
+  var description = document.querySelector('#' + description_id);
   if (!description) {
     return;
   }
