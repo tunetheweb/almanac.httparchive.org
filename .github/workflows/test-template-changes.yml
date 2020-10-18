@@ -48,5 +48,5 @@ jobs:
           const { issue: { number: issue_number }, repo: { owner, repo }  } = context;
           const pr_comment_output = '${{ steps.test-template-changes.outputs.PR_COMMENT }}';
           // Unescape any escaped comments so code blocks appear correctly
-          const pr_comment = pr_comment_output.replace(/%0A/g,'\n').replace(/%0D/g,'\r').replace(/%25/g,'%').replace(/%27/g,'\'').replace(/%22/g,'"');
+          const pr_comment = pr_comment_output.replace(/%0A/g,'\n').replace(/%0D/g,'\r').replace(/%27/g,"'").replace(/%22/g,'"').replace(/%25/g,'%');
           github.issues.createComment({ issue_number, owner, repo, body: pr_comment });
