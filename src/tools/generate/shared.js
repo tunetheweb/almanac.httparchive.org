@@ -41,7 +41,7 @@ const get_yearly_configs = async () => {
     const re = (process.platform != 'win32') 
                   ? /config\/([0-9]*).json/ 
                   : /config\\([0-9]*).json/;
-    const [,year] = config_file.match(re);
+    const [path,year] = config_file.match(re);
     
     configs[year] = JSON.parse(await fs.readFile(`config/${year}.json`, 'utf8'));
   }
