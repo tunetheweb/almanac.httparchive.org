@@ -29,14 +29,14 @@ const generate_chapters = async () => {
   
   configs = await get_yearly_configs();
   for (const year in configs) {  
-    sitemap_languages[year] = configs[year].settings[0].supported_languages
+    sitemap_languages[year] = configs[year].settings[0].supported_languages;
   }
 
   for (const file of await find_markdown_files()) {
     const re = (process.platform != 'win32') 
                   ? /content\/(.*)\/(.*)\/(.*).md/ 
                   : /content\\(.*)\\(.*)\\(.*).md/;
-    const [path, language, year, chapter] = file.match(re);
+    const [, language, year, chapter] = file.match(re);
 
     try {
       console.log(`\n Generating chapter: ${language}, ${year}, ${chapter}`);
