@@ -289,7 +289,7 @@ function indexHighlighter() {
   // Check if 'position:sticky' is supported (as this is not great UX when not so don't bother)
   // Add the sticky class (which sets 'position:sticky') and then test if that stuck :-)
   // Also use endsWith to support vendor prefixes (Safari v12 needs this)
-  chapterIndex.classList.add('sticky');
+  chapterIndex && chapterIndex.classList.add('sticky');
   var chapterIndexStyles = getComputedStyle(chapterIndex);
   if (!chapterIndexStyles || !chapterIndexStyles.position || !chapterIndexStyles.position.endsWith('sticky')) {
     gtag('event', 'index-highlighter', { 'event_category': 'user', 'event_label': 'not-enabled', 'value': 0 });
