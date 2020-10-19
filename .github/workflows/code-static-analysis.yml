@@ -5,11 +5,13 @@ on:
     paths:
       - '**.js'
       - '**.py'
+      - '**.html'
       - '**.yml'
   pull_request:
     paths:
       - '**.js'
       - '**.py'
+      - '**.html'
       - '**.yml'
   schedule:
     #        ┌───────────── minute (0 - 59)
