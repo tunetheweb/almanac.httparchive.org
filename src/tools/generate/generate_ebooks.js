@@ -4,8 +4,6 @@ const { size_of } = require('./shared');
 
 const update_links = (chapter, chapter_config) => {
   let body = chapter.body;
-  // Replace current chapter links to full anchor link (e.g. #introduction -> #javascript-introduction)
-  body = body.replace(/href="#/g,'href="#' + chapter.metadata.chapter + '-');
   // Replace current chapter fig ids to full id (e.g. id="fig-1" -> id="fig-1-1")
   body = body.replace(/id="fig-([0-9_-])/g,'id="fig-' + chapter_config.chapter_number + '-$1');
   // Add ebook=true to figure_markup macros
@@ -23,7 +21,7 @@ const update_links = (chapter, chapter_config) => {
   // Replace other chapter references to anchor link (e.g. ./javascript -> #javascript)
   body = body.replace(/<a href="\.\//g,'<a href="#');
   // Replace other year chapter references with absolute line (e.g. ../2019/http2 -> https://almanac.httparchive.org/en/2019/http2)
-  body = body.replace(/<a href="\.\.\//g,'<a href="https://almanac.httparchive.org/{{ lang }}');
+  body = body.replace(/<a href="\.\.\//g,'<a href="https://almanac.httparchive.org/{{ lang }}/');
   // For external links add footnote span - unless the link text is the address (begining wiht http, ww or @ got Twitter ids)
   body = body.replace(/href="(http[^"]*?)"([^>]*?)>(?!(www|http|@)[^<]*?)<\/a>/g,'href="$1"$2>$3</a><span class="fn">$1</span>');
   // Replace figure image links to full site, to avoid 0.0.0.0:8080 links

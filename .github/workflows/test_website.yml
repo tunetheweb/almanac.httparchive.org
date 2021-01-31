@@ -32,18 +32,12 @@ jobs:
       run: ./src/tools/scripts/run_and_test_website.sh
     - name: Remove node modules to avoid linting errors
       run: rm -rf src/node_modules
-    - name: Lint Generated HTML
-      uses: docker://github/super-linter:v3.14.0
-      env:
-        DEFAULT_BRANCH: main
-        FILTER_REGEX_INCLUDE: src/static/html/.*
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        VALIDATE_HTML: true
+    - name: Remove stories HTML to avoid linting errors
+      run: rm -rf src/static/html/en/2020/stories
     - name: Validate HTML
       uses: Cyb3r-Jak3/html5validator-action@v0.4.4
       with:
         root: src/static/html
-        extra: blacklist=src/static/html/en/2020/stories
     - uses: actions/upload-artifact@v2
       with:
         name: log
