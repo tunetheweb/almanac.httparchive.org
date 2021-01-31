@@ -656,7 +656,7 @@ Si on fait une comparaison entre HTTP et HTTPS, cela devient encore plus intére
   <table>
     <thead>
       <tr>
-        <td scope="col"></td>
+        <td></td>
         <td></td>
         <th scope="col">N'utilise pas Service Worker</th>
         <th scope="col">Utilise Service Worker</th>
