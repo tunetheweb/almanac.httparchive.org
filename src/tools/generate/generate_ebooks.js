@@ -2,12 +2,12 @@ const fs = require('fs-extra');
 const ejs = require('ejs');
 const { size_of } = require('./shared');
 
-const update_links = (chapter) => {
+const update_links = (chapter, chapter_config) => {
   let body = chapter.body;
   // Replace current chapter links to full anchor link (e.g. #introduction -> #javascript-introduction)
   body = body.replace(/href="#/g,'href="#' + chapter.metadata.chapter + '-');
   // Replace current chapter fig ids to full id (e.g. id="fig-1" -> id="fig-1-1")
-  body = body.replace(/id="fig-([0-9_-])/g,'id="fig-' + chapter.metadata.chapter_number + '-$1');
+  body = body.replace(/id="fig-([0-9_-])/g,'id="fig-' + chapter_config.chapter_number + '-$1');
   // Add ebook=true to figure_markup macros
   body = body.replace(/figure_markup\(/g,'figure_markup(\nebook=true,');
   // Add ebook=true to figure_link templates
@@ -19,7 +19,7 @@ const update_links = (chapter) => {
   // Replace other chapter references with hash to anchor link (e.g. ./javascript#fig-1 -> #javascript-fig-1)
   body = body.replace(/<a href=".\/([a-z0-9-]+)#/g,'<a href="#$1-');
   // Correct figure links, which are already fully qualified
-  body = body.replace(/href="#([a-z0-9-]*)-fig-([0-9]*)"/g,'href="#fig-' + chapter.metadata.chapter_number + '-$2"');
+  body = body.replace(/href="#([a-z0-9-]*)-fig-([0-9]*)"/g,'href="#fig-' + chapter_config.chapter_number + '-$2"');
   // Replace other chapter references to anchor link (e.g. ./javascript -> #javascript)
   body = body.replace(/<a href="\.\//g,'<a href="#');
   // Replace other year chapter references with absolute line (e.g. ../2019/http2 -> https://almanac.httparchive.org/en/2019/http2)
@@ -62,7 +62,7 @@ const generate_ebooks = async (ebook_chapters,configs) => {
                    && c.metadata.chapter == chapter_config.slug
           );
 
-          chapter.body = update_links(chapter);
+          chapter.body = update_links(chapter, chapter_config);
 
           part.chapters.push({ ...chapter_config, ...chapter });
         }
