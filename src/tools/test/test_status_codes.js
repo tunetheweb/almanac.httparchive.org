@@ -102,7 +102,7 @@ const test_no_year_redirects = async () => {
 const test_status_codes = async () => {
 
   await get_config();
-/*
+
   // Test success pages
   await test_sitemap_pages();
   await test_ebooks();
@@ -130,8 +130,6 @@ const test_status_codes = async () => {
   await test_status_code('/base/methodology', 308, `/base/methodology/`);
   await test_status_code('/base/methodology/', 404);
   await test_status_code('/base/2019/methodology/', 404);
-  */
-  await test_status_code('/it/2020/css', 200);
 
   console.log('Passes:', passes, "Failures:", failures);
   process.exitCode = failures;
