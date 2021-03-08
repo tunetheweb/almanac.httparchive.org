@@ -77,7 +77,7 @@ echo "Running pytest"
 #npm run pytest
 
 echo "Testing website"
-npm run test http://127.0.0.1/it/2020/css.md
+npm run test
 
 echo "Website started successfully"
 
