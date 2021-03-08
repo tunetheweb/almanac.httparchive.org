@@ -38,7 +38,7 @@ jobs:
       uses: docker://github/super-linter:v3.14.0
       env:
         DEFAULT_BRANCH: main
-        FILTER_REGEX_INCLUDE: src/static/html/.*
+        FILTER_REGEX_INCLUDE: src/static/html/it/2020/css.html
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         VALIDATE_HTML: true
     - name: Set the list of URLs for Lighthouse to check
