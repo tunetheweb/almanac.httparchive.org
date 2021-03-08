@@ -71,10 +71,10 @@ echo "Installing node modules"
 npm install
 
 echo "Building website"
-npm run generate content/it/2020/css.md
+npm run generate
 
 echo "Running pytest"
-#npm run pytest
+npm run pytest
 
 echo "Testing website"
 npm run test

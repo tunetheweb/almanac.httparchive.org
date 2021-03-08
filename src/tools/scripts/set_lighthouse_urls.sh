@@ -39,7 +39,10 @@ LIGHTHOUSE_URLS=""
 # Set some URLs that should always be checked on pull requests
 # to ensure basic coverage
 BASE_URLS=$(cat <<-END
-http://127.0.0.1:8080/it/2020/css
+http://127.0.0.1:8080/en/2019/
+http://127.0.0.1:8080/en/2019/javascript
+http://127.0.0.1:8080/en/2020/
+http://127.0.0.1:8080/en/2020/css
 END
 )
 
