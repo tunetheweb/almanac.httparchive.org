@@ -1019,7 +1019,7 @@ Quindi, diamo un'occhiata anche a un'altra metrica: quante pagine specificano `d
 
 Dato che Flexbox era utilizzabile nei browser prima del layout Grid, è probabile che parte dell'utilizzo di Flexbox sia per la configurazione di un grid system. Per utilizzare Flexbox come grid, gli autori devono disabilitare parte della flessibilità intrinseca di Flexbox. Per fare ciò, imposta la proprietà `flex-grow` su `0`, quindi dimensiona gli elementi flessibili usando le percentuali. Utilizzando queste informazioni siamo stati in grado di segnalare che il 19% dei siti sia su desktop che su dispositivi mobile utilizzava Flexbox in questo modo simile a una griglia.
 
-I motivi per scegliere Flexbox su Grid sono spesso citati come supporto del browser, dato che il layout Grid [non era supportato in Internet Explorer](https://caniuse.com/css-grid). Inoltre, alcuni autori potrebbero non aver ancora imparato il layout Grid o utilizzare un framework con un sistema grid basato su Flexbox. Il framework [Bootstrap](https://getbootstrap.com/docs/4.5/layout/grid/) attualmente utilizza un grid basato su Flexbox, che è comune con alcune scelte di framework popolari.
+I motivi per scegliere Flexbox su Grid sono spesso citati come supporto del browser, dato che il layout Grid <a hreflang="en" href="https://caniuse.com/css-grid">non era supportato in Internet Explorer</a>. Inoltre, alcuni autori potrebbero non aver ancora imparato il layout Grid o utilizzare un framework con un sistema grid basato su Flexbox. Il framework <a hreflang="en" href="https://getbootstrap.com/docs/4.5/layout/grid/">Bootstrap</a> attualmente utilizza un grid basato su Flexbox, che è comune con alcune scelte di framework popolari.
 
 ### Utilizzo di diverse tecniche di layout Grid
 
