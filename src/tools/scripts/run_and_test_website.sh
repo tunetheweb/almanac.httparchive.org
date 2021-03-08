@@ -71,13 +71,13 @@ echo "Installing node modules"
 npm install
 
 echo "Building website"
-npm run generate
+npm run generate content/it/2020/css.md
 
 echo "Running pytest"
 npm run pytest
 
 echo "Testing website"
-npm run test
+npm run test http://127.0.0.1/it/2020/css.md
 
 echo "Website started successfully"
 
